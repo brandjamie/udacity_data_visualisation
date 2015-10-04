@@ -1,0 +1,49 @@
+* References:
+https://en.wikipedia.org/wiki/International_Standard_Classification_of_Education#ISCED_2011_levels.2C_categories.2C_and_sub-categories
+(contains ISCED levels)
+
+http://stackoverflow.com/questions/3025648/import-csv-to-mysql
+More how to load data
+
+https://mariadb.com/kb/en/mariadb/how-to-quickly-insert-data-into-mariadb/
+How to load data
+
+
+http://stackoverflow.com/questions/2675323/mysql-load-null-values-from-csv-data
+Dealing with nulls
+
+http://www.oecd-ilibrary.org/docserver/download/9809021ec007.pdf?expires=1443598739&id=id&accname=guest&checksum=980B3D006F68B42B1F371E349BC6E323
+OECD info on plausible values
+
+* ISCED Levels
+
+0 - pre-primary education
+1 - primary education
+2 - lower secondary education
+3 - upper secondary education
+4 - post secondary non-tertiary education 
+5 - post secondary tertiary education 
+6 - bachelor or equivalent
+7 - Master or equivalent
+8 - Doctoral or equivalent
+
+* Importing into sql
+start mysql deamon
+BASH:
+systemctl start mysqld.service
+
+From Bash:
+sed -i 's/,NA/,\\N/g' pisa2012.csv   (changes 'NA' to \N - the NULL character in mysql)
+
+Use importcsv.py file to create table - 
+
+iconv -c -f utf-8 -t ascii pisa2012.csv > pisa2012b.csv  (changes or removes all non-ascii characters). 
+
+start mysql (database 'pisa' already created):
+mysql -u pisa -p
+
+MYSQL>USE pisa;
+MYSQL>LOAD DATA LOCAL INFILE '/home/jb/Documents/Data\ Science/udacity_data_visualisation/pisa2012b.csv' INTO TABLE pisa FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+
+* Interesting queries /info
+

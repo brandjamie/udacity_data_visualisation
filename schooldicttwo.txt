@@ -1,0 +1,273 @@
+SC25Q05			"Parent Participation - Assistance building and grounds"
+
+SC25Q04			"Parent Participation - Progress discussion teacher initiative"
+
+SC25Q07			"Parent Participation - Library volunteering"
+
+SC25Q06			"Parent Participation - Extra-curricular volunteering"
+
+SC25Q01			"Parent Participation - Behaviour discussion parent initiative"
+
+SC44Q06			"Transfer  -  other reasons"
+
+SC25Q03			"Parent Participation - Progress discussion parent initiative"
+
+SC25Q02			"Parent Participation - Behaviour discussion teacher initiative"
+
+SC33Q11A		"Responsibility - Course content - Principals"                               
+
+SC33Q12D		"Responsibility - Courses offered - <Regional or local education authority>"
+
+SC39Q10			"Quality Assurance - Standardised maths policy"
+
+SC25Q09			"Parent Participation - Guest speaking"
+
+SC25Q08			"Parent Participation - Teacher assistance"
+
+PROPQUAL  	"Proportion of teachers with ISCED 5A"
+
+SC33Q12E		"Responsibility - Courses offered - National education authority"           
+
+SC10Q41			"No. of maths teachers - <ISCED5A> Qual Pedagogy Full Time"
+
+SC13Q01			"Internet schoolwork - Lessons"
+
+SC13Q02			"Internet schoolwork - Homework"
+
+SC10Q42			"No. of maths teachers - <ISCED5A> Qual Pedagogy Part Time"
+
+SC30Q03			"Teacher Monitoring - Principal or senior staff"
+
+SC30Q02			"Teacher Monitoring - Teacher peer review"
+
+SC30Q01			"Teacher Monitoring - Student Achievement tests"
+
+SCHOOLID    "School ID 7-digit (region ID + stratum ID + 3-digit school ID)"
+
+SC33Q06E		"Responsibility - Budget allocation - National education authority"              
+
+SC33Q06D		"Responsibility - Budget allocation - <Regional or local education authority>"   
+
+SC30Q04			"Teacher Monitoring - External observers"
+
+SMRATIO   	"Maths Teacher-student ratio"
+
+SC34Q18			"School Leadership - Sharing ideas or information"
+
+SC34Q19			"School Leadership - Informal observations"
+
+SC34Q14			"School Leadership - Goal discussion"
+
+SC34Q15			"School Leadership - Goal-oriented curriculum"
+
+SC34Q16			"School Leadership - Curricular strengths"
+
+SC34Q17			"School Leadership - Inservice activities"
+
+SC34Q10			"School Leadership - Staff decision making"
+
+SC34Q11			"School Leadership - Improvement culture"
+
+SC34Q12			"School Leadership - Reviewing management"
+
+SC34Q13			"School Leadership - Joint problem solving"
+
+SC25Q12			"Parent Pariticpation - <Canteen>"
+
+SC25Q10			"Parent Participation - School government"
+
+SC25Q11			"Parent Participation - Fundraising"
+
+SC35Q01			"Maths Professional Development  - All staff"
+
+SC35Q02			"Maths Professional Development  - Maths teachers"
+
+PROPCERT  	"Proportion of certified teachers"
+
+SC10Q52			"No. of maths teachers - <ISCED5B> Qual Part Time"
+
+SC22Q04			"Learning Hindrance - Students skipping events"
+
+SC02Q04			"Funding - Other"
+
+SC10Q51			"No. of maths teachers - <ISCED5B> Qual Full Time"
+
+SC02Q02			"Funding - Student fees"
+
+SC02Q03			"Funding - Benefactors"
+
+SC44Q01			"Student Transfer  -  Low achievement"
+
+SC02Q01			"Funding - Government"
+
+SCHAUTON		"School Autonomy"
+
+SC29Q01			"Teacher intentions - Social development"
+
+SC22Q07			"Learning Hindrance - Students drug use"
+
+SCMATBUI		"Quality of physical infrastructure"
+
+SC33Q12C		"Responsibility - Courses offered - <School governing board>"               
+
+SC33Q07D		"Responsibility - Disciplinary policies - <Regional or local education authority>"   
+
+SC33Q07E		"Responsibility - Disciplinary policies - National education authority"              
+
+SC33Q07B		"Responsibility - Disciplinary policies - Teachers"                                  
+
+SC33Q07C		"Responsibility - Disciplinary policies - <School governing board>"                  
+
+SCHSIZE   	"Total school enrolment"
+
+SC27Q02			"Teacher intentions - Stay with well-known methods"
+
+SC16Q07			"Activities - Chess club "
+
+SC16Q06			"Activities - Mathematics competitions"
+
+SC16Q05			"Activities - Mathematics club "
+
+SC16Q04			"Activities - Volunteering"
+
+SC16Q03			"Activities - Yearbook or newspaper"
+
+SC16Q02			"Activities - School play"
+
+SC16Q01			"Activities - Band"
+
+SC34Q20			"School Leadership - Review student work"
+
+SC34Q22			"School Leadership - Evaluate staff"
+
+SC52Q02			"Teaching FE – NGO"
+
+SC16Q09			"Activities - Art club"
+
+SC16Q08			"Activities - Computer or ICT club"
+
+SC33Q09D		"Responsibility - Student admittance - <Regional or local education authority>"
+
+SC33Q09E		"Responsibility - Student admittance - National education authority"           
+
+SC13Q03			"Internet schoolwork - Assignments"
+
+SC33Q09A		"Responsibility - Student admittance - Principals"                                 
+
+SC33Q09B		"Responsibility - Student admittance - Teachers"                               
+
+SC33Q09C		"Responsibility - Student admittance - <School governing board>"               
+
+SC39Q05			"Quality Assurance - Internal evaluation"
+
+SC39Q06			"Quality Assurance - External evaluation "
+
+SC39Q07			"Quality Assurance - Student feed-back"
+
+SC39Q01			"Quality Assurance - Specification of profile"
+
+SC39Q02			"Quality Assurance - Specification of standards"
+
+		"QUD9797"  "Undisclosed STRATUM - Puerto Rico" 
+
+SC33Q07A		"Responsibility - Disciplinary policies - Principals"                                 
+
+SC03Q01			"School Location"
+
+SC14Q10			"Shortage - Library materials"
+
+RESPCUR			"Index of school responsibility for curriculum and assessment"
+
+SC18Q08			"Assessments  -  Other Schools"
+
+SC20Q01			"Additional maths lessons"
+
+SC10Q22			"No. of maths teachers - <ISCED5A> Qual Maths Major Part Time"
+
+SC10Q21			"No. of maths teachers - <ISCED5A> Qual Maths Major Full Time"
+
+RATCMP15  	"Ratio of computers for education and number of students in the <national modal grade for 15-year-olds>"
+
+SC18Q01			"Assessments  -  Child's Progress"
+
+SC33Q12A		"Responsibility - Courses offered - Principals"                             
+
+SC18Q03			"Assessments  -  Instruction"
+
+SC18Q02			"Assessments  -  Student Promotion"
+
+SC18Q05			"Assessments  -  School's Progress"
+
+SC18Q04			"Assessments  -  National Performance"
+
+SC18Q07			"Assessments  -  Curriculum"
+
+SC18Q06			"Assessments  -  Teachers"
+
+SC44Q04			"Student Transfer  -  Special learning needs"
+
+SC16Q10			"Activities - Sporting team"
+
+SC16Q11			"Activities - <country specific item> "
+
+ABGMATH			"Ability grouping for mathematics classes"
+
+TCMORALE		"Teacher Morale"
+
+SC33Q06A		"Responsibility - Budget allocation - Principals"                                 
+
+SC45Q01			"Compulsory FE"
+
+SC46Q07			"Teaching FE - Private sector"
+
+SC33Q10B		"Responsibility - Textbook selection - Teachers"                                 
+
+W_FSCHWT		"GRADE NONRESPONSE ADJUSTED SCHOOL BASE WEIGHT"
+
+SC33Q06C		"Responsibility - Budget allocation - <School governing board>"                  
+
+MATHEXC			"Mathematics extension course types offered"
+
+SC33Q03B		"Responsibility - Teacher start salaries - Teachers"                                  
+
+SC29Q02			"Teacher intentions - Development of maths skills"
+
+SC14Q09			"Shortage - Computer software"
+
+SC14Q08			"Shortage - Internet connectivity"
+
+SC33Q03C		"Responsibility - Teacher start salaries - <School governing board>"                  
+
+SC14Q05			"Shortage - Science lab equipment"
+
+SC14Q04			"Shortage - Other teachers"
+
+SC14Q07			"Shortage - Computers for instruction"
+
+SC14Q06			"Shortage - Instructional materials"
+
+SC14Q01			"Shortage - Science teachers"
+
+SC14Q03			"Shortage - <Test language> teachers"
+
+SC14Q02			"Shortage - Maths teachers"
+
+SC33Q01D		"Responsibility - Hiring teachers - <Regional or local education authority>"
+
+SC33Q01E		"Responsibility - Hiring teachers - National education authority"
+
+SC39Q08			"Quality Assurance - Teacher mentoring "
+
+SC33Q03A		"Responsibility - Teacher start salaries - Principals"                                
+
+SC33Q01A		"Responsibility - Hiring teachers - Principals"
+
+SC33Q01B		"Responsibility - Hiring teachers - Teachers"
+
+SC33Q01C		"Responsibility - Hiring teachers - <School governing board>"
+
+SC21Q05			"Purpose of additional maths lessons"
+
+SC22Q12			"Learning Hindrance - Diverse ethnic backgrounds"
+
+PROPMA
