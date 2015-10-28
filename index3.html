@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+ 
+<style>
+body {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  stroke: #000;
+}
+
+</style>
+</head>
+
+<body>
+<select id = "subject">
+<option value="math">Student Maths score</option>
+<option value="read">Student Reading score</option> 
+<option value="scie">Student Science score</option>
+<option value="math">Student Maths index</option>
+</select>    
+
+
+
+<body>
+<select id = "attitude">
+</select>    
+
+<body>
+  <select id = "school">
+<option value="maths">School Maths score</option>
+<option value="read">School Reading score</option> 
+<option value="scie">School Science score</option>
+
+  </select>    
+
+
+  <script src="d3.v3.min.js"></script>
+  <script>
+
+    var attitudes_arr = [
+    ["ST88Q01","Attitude towards School - Does Little to Prepare Me for Life"],
+    ["ST88Q02","Attitude towards School - Waste of Time"],
+    ["ST88Q03","Attitude towards School - Gave Me Confidence"],
+    ["ST88Q04","Attitude towards School- Useful for Job"],
+    ["ST89Q02","Attitude toward School - Helps to Get a Job"],
+    ["ST89Q03","Attitude toward School - Prepare for College"],
+    ["ST89Q04","Attitude toward School - Enjoy Good Grades"],
+    ["ST89Q05","Attitude toward School - Trying Hard is Important"]
+]
+
+
+var school_char = [
+    ["SCHSIZE","Total school enrolment"],
+    ["RATCMP15","Ratio of computers for education and number of students"],
+    ["PROPQUAL","Proportion of teachers with ISCED 5A"],
+    ["PROPCERT","Proportion of certified teachers"],
+    ["SMRATIO","Maths Teacher-student ratio"],
+    ["RESPCUR","Index of school responsibility for curriculum and assessment"],
+    ["SC25Q05","Parent Participation - Assistance building and grounds"],
+    ["SC34Q15","School Leadership - Goal-oriented curriculum"],
+    ["SC27Q02","Teacher intentions - Stay with well-known methods"],
+    ["SC16Q05","Activities - Mathematics club "],
+    ["SC39Q07","Quality Assurance - Student feed-back"]
+]
+
+    
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+// set inintial parameters
+var subject_var = "math"
+
+var attitude_var = "ST88Q02"
+    
+var school_var = "maths"
+
+
+
+
+
+var x = d3.scale.linear()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([height,0]);
+
+//var color = d3.scale.category10();
+var color = d3.scale.ordinal().range(['#1f77b4','#9467bd','#2ca02c','#ff7f0e','#d62728']);
+
+  
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .attr("style","display: block")
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var ukschools;
+
+
+d3.csv("ukschoolstwo.csv",function(error, data) {
+    if (error) throw error;
+    ukschools = data;
+    drawChart();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+    
+function getColor(d) {
+return d.option
+}
+
+
+
+function getSchoolGrade(d) {
+grade_string = "d."+school_var;
+    grade = eval(grade_string)
+    return grade;
+
+
+
+}
+
+
+function getAnswerGrade(d) {
+    ystring = "d."+attitude_var+subject_var;
+    y_value = eval(ystring)
+    return y_value
+}
+
+
+
+function getAttitudeDomain() {
+    domains = ["Strongly Agree","Agree","Disagree","Strongly Disagree"]
+    return domains
+    }
+    
+
+
+
+
+d3.select('#subject')
+    .on('change', function() {
+	var newData = d3.select(this).property('value');
+	subject_var = newData;
+	updateChart();
+    });
+
+    
+d3.select('#attitude')
+    .property( "value", attitude_var )   
+    .on('change', function() {
+	var newData = d3.select(this).property('value');
+	attitude_var = newData;
+	updateChart();
+    });
+
+
+d3.select('#school')
+    .on('change', function() {
+	var newData = d3.select(this).property('value');
+	school_var = newData;
+	updateChart();
+    });
+
+    
+var attitude_el = document.getElementById("attitude");
+for (i = 0; i < attitudes_arr.length;i++) {
+		var option = document.createElement("option");
+		option.setAttribute("value", attitudes_arr[i][0]);
+		option.text = attitudes_arr[i][1];
+		attitude_el.appendChild(option);
+}
+
+var school_el = document.getElementById("school");
+for (i = 0; i < school_char.length;i++) {
+		var option = document.createElement("option");
+		option.setAttribute("value", school_char[i][0]);
+		option.text = school_char[i][1];
+		school_el.appendChild(option);
+}
+
+
+
+function drawChart() {
+    //convert values to ints
+    ukschools.forEach(function(d) {
+	d.maths = Math.floor(+d.maths);
+	d.scie = Math.floor(+d.scie);
+	d.read = Math.floor(+d.read);
+	d.SCHOOLID = +d.SCHOOLID;
+	for (i = 0; i < attitudes_arr.length; i++){
+	    thisstring = "d."+attitudes_arr[i][0]+";"
+	    thisdatum = eval(thisstring);
+	    thisdatum = Math.floor(+thisdatum);
+	}
+	
+    });
+    
+    chart = makeChart(subject_var,attitude_var,height,width)
+}
+
+	
+function makeChart(subj,atti,height,width) { 
+    x.domain(d3.extent(ukschools, function(d) { return getSchoolGrade(d); })).nice();
+    y.domain(getAttitudeDomain());
+  
+    var xlab = document.getElementById("school");
+    xlabtxt = subj
+    xlabtxt = xlab.options[xlabtxt].text
+    //xlabtxt = "xlabtxt"
+    var ylab = document.getElementById("attitude");
+    ylabtxt = atti
+    ylabtxt = ylab.options[ylabtxt].text
+
+
+    svg.append("g")
+	.attr("class", "x axis")
+	.attr("transform", "translate(0," + height + ")")
+	.call(xAxis)
+	.append("text")
+	.attr("class", "x_label")
+	.attr("x", width)
+	.attr("y", -6)
+	.style("text-anchor", "end")
+	.text(xlabtxt);
+
+    svg.append("g")
+	.attr("class", "y axis")
+	.call(yAxis)
+	.append("text")
+	.attr("class", "y_label")
+	.attr("transform", "rotate(-90)")
+	.attr("y", 6)
+	.attr("dy", ".71em")
+	.style("text-anchor", "end")
+	.text(ylabtxt);
+
+
+    svg.selectAll(".dot")
+	.data(ukschools)
+	.enter().append("circle")
+	.attr("class", "dot")
+	.attr("r", 3)
+	.attr("cx", function(d) { return x(getSchoolGrade(d)); })
+    	.attr("cy", function(d) { return y(getAnswerGrade(d)); })
+	.attr('fill-opacity', 0.5)
+	.attr('stroke-opacity', 0.5)
+      	.style("stroke", function(d) {
+            return color(getColor(d))})
+      	.style("fill", function(d) {
+            return color(getColor(d))})
+	.style("display", function(d) {
+	    if ( getSchoolGrade(d) == "" ||getAnswerGrade(d) == "" ) {
+		return "none" }
+	});
+
+  
+      
+
+       var legend = svg.selectAll(".legend")
+    	.data(sortColorDomain)
+    	.enter().append("g")
+    	.attr("class", "legend")
+    	.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; })
+ 
+  legend.append("rect")
+      .attr("x", width - 18)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", color);
+
+  legend.append("text")
+      .attr("x", width - 24)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+		.text(function(d) { return d; });
+
+
+
+		
+};
+
+
+
+
+
+
+
+
+function updateChart() {
+    x.domain(d3.extent(ukschools, function(d) { return getSchoolGrade(d); })).nice();
+
+    var ylab = document.getElementById("subject");
+    ylabtxt = ylab.selectedIndex
+    ylabtxt = ylab.options[ylabtxt].text
+    svg.selectAll(".y_label")
+    	.text(ylabtxt)
+
+    var xlab = document.getElementById("school");
+    xlabtxt = xlab.selectedIndex
+    xlabtxt = xlab.options[xlabtxt].text
+    svg.selectAll(".x_label")
+    	.text(xlabtxt)
+
+
+    svg.selectAll("g.x.axis")
+        .call(xAxis);
+
+    
+    
+    svg.selectAll(".dot").transition()
+        .duration(0)
+	.attr("cx", function(d) { return x(getSchoolGrade(d)); })
+    	.attr("cy", function(d) { return y(getAnswerGrade(d)); })
+	.attr('fill-opacity', function(d) {
+	    var op = 0.5
+	    if ( getSchoolGrade(d) == 0 ||getAnswerGrade(d) == 0) {
+			op = 0;
+	    };
+	    return op;
+	})
+	.attr('stroke-opacity', function(d) {
+	    var op = 0.5
+	    if ( getSchoolGrade(d) == 0 ||getAnswerGrade(d) == 0) {
+			op = 0;
+	    };
+	    return op;
+	})
+      	.style("stroke", function(d) {
+            return color(getColor(d))})
+      	.style("fill", function(d) {
+            return color(getColor(d))})
+	.attr("display", function(d) {
+	    if ( getSchoolGrade(d) == 0 ||getAnswerGrade(d) == 0) {
+	
+			return "none";
+	    };
+	});
+
+    
+    
+}
+		
+</script>

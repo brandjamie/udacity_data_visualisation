@@ -46,4 +46,6 @@ MYSQL>USE pisa;
 MYSQL>LOAD DATA LOCAL INFILE '/home/jb/Documents/Data\ Science/udacity_data_visualisation/pisa2012b.csv' INTO TABLE pisa FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 LINES;
 
 * Interesting queries /info
+  
+
 

@@ -53,7 +53,7 @@ readpv = '(PV1READ + PV2READ + PV3READ + PV4READ + PV5READ)/(5.0)'
 
 sciepv = '(PV1SCIE + PV2SCIE + PV3SCIE + PV4SCIE + PV5SCIE)/(5.0)'
 
-
+sqlselection = questioncodes
 
 
 
@@ -97,16 +97,19 @@ cursor = cnx.cursor()
 cursor.execute(sqlstring)
 result = cursor.fetchall()
 
+sqlselection 
 print sqlselection
+
 
 with open('uk_students.csv', 'wt') as csvfile:
         csvwriter = csv.writer(csvfile, delimiter=',',
                                quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        sqlselection += 'maths'
-        sqlselection += 'read'
-        sqlselection += 'scie'
+        questioncodes = questioncodes[:len(questioncodes)-3]
+        questioncodes.append('maths')
+        questioncodes.append('read')
+        questioncodes.append('scie')
         
-        csvwriter.writerow(sqlselection)
+        csvwriter.writerow(questioncodes)
         for line in result:
             print len(line)
             csvwriter.writerow(line)

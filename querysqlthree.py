@@ -94,9 +94,9 @@ print sqlselection
 with open('ukschools.csv', 'wt') as csvfile:
         csvwriter = csv.writer(csvfile, delimiter=',',
                                quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        sqlselection += 'maths'
-        sqlselection += 'read'
-        sqlselection += 'scie'
+        sqlselection.append('maths')
+        sqlselection.append('read')
+        sqlselection.append('scie')
         print type(result)
         csvwriter.writerow(sqlselection)
         for line in result:
