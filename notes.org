@@ -45,7 +45,182 @@ mysql -u pisa -p
 MYSQL>USE pisa;
 MYSQL>LOAD DATA LOCAL INFILE '/home/jb/Documents/Data\ Science/udacity_data_visualisation/pisa2012b.csv' INTO TABLE pisa FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 LINES;
 
-* Interesting queries /info
-  
+* Third attempt at making a visualisation 
+** Find the actual questions and options for:
+*** The school 'shortage' questions
+
+https://nces.ed.gov/surveys/pisa/pdf/MS12_ScQ_USA_final.pdf
+
+
+Q13 Is your school's capacity to provide instruction hindered by any of the following issues?
+
+["SC14Q01","a) A lack of qualified science teachers"],
+["SC14Q02","b) A lack of qualified mathematics teachers"],
+["SC14Q03","c) A lack of qualified English teachers"],
+["SC14Q04","d) A lack of qualified teachers of other subjects"],
+["SC14Q05","e) Shortage or inadequacy of science laboratory equipment"],
+["SC14Q06","f) Shortage or inadequacy of instructional materials (e.g., textbooks)"],
+["SC14Q07","g) Shortage or inadequacy of computers for instruction"],
+["SC14Q08","h) Lack or inadequacy of Internet connectivity"],
+["SC14Q09","i) Shortage or inadequacy of computer software for instruction"],
+["SC14Q010","j) Shortage or inadequacy of library materials"],
+
+
+Answers: Not at all, Very Little, To some extent, A lot
+
+
+
+
+
+*** The student 'attitude' questions
+From:
+https://nces.ed.gov/surveys/pisa/pdf/MS12_StQ_FormB_ENG_USA_final.pdf
+
+About your school:
+
+Q39: Thinking about the teachers at your school: to what extent do you agree or disagree with the following? 
+
+["ST86Q01","Students get along well with most teachers"],
+["ST86Q02",""Most teachers are interested in students' well-being"],
+["ST86Q03",""Most of my teachers really listed to what I have to say."],
+["ST86Q04",""If I need extra help, I will receive it from my teachers."],
+["ST86Q05",""Most of my teachers treat me fairly."]
+
+Q40: Thinking about your school:to what extent do you agree or disagree with the following? 
+
+["ST87Q01","I feel like an outsider (or left out of things) at school.","Q40"],
+["ST87Q02","I make friends easily at school","Q40"],
+["ST87Q03","I feel like I belong at school.","Q40"],
+["ST87Q04","I feel awkward and out of place in my school.","Q40"],
+["ST87Q05","Other students seem to like me","Q40"],
+["ST87Q06","I feel lonely at school.","Q40"],
+["ST87Q07","I feel happy at school.","Q40"],
+["ST87Q08","Things are idea in my school.","Q40"],
+["ST87Q09","I am satisfied with my school.","Q40"],
+
+Q41: Thinking about what you have learned at school: to what extent do you agree or disagree with the following? 
+
+    ["ST88Q01","School has done little to prepare me for adult life when I leave school."
+    ["ST88Q02","School has been a waste of time."],
+    ["ST88Q03","School has helped give me confidence to make decisions."],
+    ["ST88Q04","School has taught me things which could be useful in a job."],
+
+Q42 Thinking about your school:to what extent do you agree or disagree with the following? 
+
+    ["ST89Q02","Trying had at school will help me get a good job."],
+    ["ST89Q03","Trying hard at school will help me get into a good college."],
+    ["ST89Q04","I enjoy receiving good grades."],
+    ["ST89Q05","Trying hard at school is important."]
+
+Q43 Thinking about your school: to what extent do you agree or disagree with the following? 
+
+    ["ST91Q01","If I put in enough effort I can succeed in school."
+["ST91Q02","It is completely my choice whether or not I do well at school."
+["ST91Q03","Family demands or other problems prevent me from putting a lot of time into my school work."
+["ST91Q04","If I had different teachers I would try harder at school."
+["ST91Q05","If I wanted to I could do well in school."
+["ST91Q06","I do badly in school whether or not I study for my exams."
+
+
+   
+
+
+
+
+
+*** Icons downloaded from 
+http://www.flaticon.com/packs/students
+
+
+*** School percentiles
+{'read': {25: 463.4270244444444, 50: 493.507645263158, 75: 526.1884470967741}, 'scie': {25: 472.9059591304348, 50: 508.89981750000004, 75: 539.548676}, 'math': {25: 454.5665233333333, 50: 484.38874827586204, 75: 519.9659011111112}}
+
+
+** Copy
+
+In the PISA 2012 survey, 15 year old students accross the world were assessed for their abilities in mathmatics, science and reading.
+
+The students were also asked to answer a questionaire investigating, among other things, their attitude towards school. 
+
+There was also a school questionaire filled out by the senior administrator in each school. 
+
+This graphic is looking only at schools in the United Kingdom and the relationship between the students attitude and their grade in each of the three subjects. 
+
+Students were asked how much they agree or dissagree with a number of statements. In this case, the statement was 'School has been a waste of time.' 
+
+The first chart shows the percentage of students that gave each answer (along the y axis) along with their average score in one of the skills (in this case, Maths). 
+
+As we might expect, the students who strongly agreed that school had been a waste of time had the lowest scores. Of course correlation does not equal causation and it is possible that the students who strongly agreed, were in fact correct in believing that school had not been a good use of their time. 
+
+The third to sixth charts show the same data looking at the schools from the 0 to 25th percentile (in this case, of the schools' average Maths scores), the 25th to 50th, the 50th to 75th and 75th to 100th percentile. 
+
+The second chart shows the average scores for each percentile bin. 
+
+** Feedback 
+
+*** Adam
+a few graphs and text yeah
+small grammar - last paragraph 'devided' - divided
+i presume this is only a casual presentation of it - otherwise i'd say the text is too small and difficult to read
+Thanks. Spelling is fixed.
+seems strange that the percentage of strongly agrees is nearly the same across all achievement categories - or am i reading it wrong?
+There's not supposed to be much text there but I found myself needing quite a lot to explain. Text is too small is the kind of thing I need to know.
+Yeah, i would try breaking up the graphs a bit to have more space for the text - or can it be on multiple pages?
+I don't know the context/use
+i think the areas to adjust parameters needs a bit of explanation - i was about to try it but realised i'm relyig on trial and error
+Just a sentence or two there would help to clarify
+Once you click it's obvious, but knowing beforehand is better
+or am i being nickpicky?
+The context is simply to create a chart explaining some data. Can't really be on multiple pages. Trial and error is the correct way to explore the data.
+ok
+No, nitpicky is good. This is what I need to address.
+the differences are miniscule it seems
+differences between what?
+Visually it doesn't convey much, although of course the stats are what they are - maybe a line of dialogue could explain when they are clicked - differences between reading maths and science scores
+And wow, there are lots of permutations
+Yeah, not much difference between the subjects. I was thinking of using an average throughout.
+Which is great - though that strikes me as endlessly time consuming.
+Could that be narrowed down - or at least have some guidance on ones to focus on
+Overall the presentation seems goodbtw
+I'm not sure, but i might play with having the text across the top
+Dunno till i saw it
+
+Or maybe general intro at the top, more specifics next to each graph
+And what about having the numbers displayed inside the coloured areas - or as a seperate list next to the graphs as they change
+That would make the figures clearer - but then again it could be a lot of work
+Actually inside the colours won't work because some are so small, so as a list maybe
+Just an idea - maybe it's not necessary
+I was thinking I may add mouseover's with the numbers (so you hover over a 'bar' and it shows you the actual figures).
+yes, that sounds good - and tell them that
+
+Slightly space out the adjustment boxes too - so the text describing it is more clearly associated
+
+Slightly space out the adjustment boxes too - so the text describing it is more clearly associated
+Are you viewing on a desktop or laptop? I'm using a large screen but am a bit concerned about smaller screens.
+desktop
+yeah i'm on a large screen too
+definitely increase text size
+there seems to be lots of space t the right of the image?
+I'm actually using a laptop plugged into a large scfreen. I have to keep the lid down cos Evie loves the keyboard. Drives me nuts.
+Maybe that's just how my screen through FB is displaying it, dunno..
+he he
+sounds cute!
+It's showing through facebook?
+Funny how that kinda thing must get annoying when it's all teh time - to me it just sounds amazingly cute!
+* Fourth attempt
+
+
+
+** slider 
+http://egorkhmelev.github.io/jslider/
+
+** toggle switches
+http://designbump.com/css3-toggle-switches-tutorial/
+** jquery accordian 
+http://www.bnecreative.com/blog/add-a-jquery-toggle-to-any-website/
+** tooltips
+http://zeroviscosity.com/d3-js-step-by-step/step-5-adding-tooltips
+** text resize
+http://stackoverflow.com/questions/14569415/read-width-of-d3-text-element
 
 
