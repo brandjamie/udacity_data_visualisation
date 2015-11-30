@@ -1,0 +1,159 @@
+body {
+  font: 11px sans-serif;
+}
+
+#copy {
+
+    width:540px;
+    display:block;
+    vertical-align:top;
+    }
+
+#first_chart {
+    border:1px solid;
+    display:inline-block;
+    position:relative;
+}
+
+#second_chart {
+    border:1px solid;
+    display:inline-block;
+    position:relative;
+}
+
+
+.controls {
+    display:inline-block;
+}
+
+    .styled-select select {
+
+   background: transparent;
+   width: 280px;
+   padding: 0px;
+   font-size: 10px;
+   line-height: 1;
+   border: 0;
+   border-radius: 0;
+   height: 20px;
+
+}
+
+    h2 {
+	margin:0px;
+    }
+
+
+
+    .styled-select {
+   width: 280px;
+    height: 20px;
+    overflow: hidden;
+   border: 1px solid #ccc;
+}
+
+.selection_one {
+    border:1px solid;
+    margin:5px;
+    padding: 5px;
+    width: 280px;
+}
+.select_two {
+    border:1px solid;
+    margin:5px;
+    padding: 5px;
+}
+
+.select_three {
+    border:1px solid;
+    margin:5px;
+    padding: 5px;
+    width: 280px
+}
+
+
+.select_three {
+    	display:inline-block;
+    vertical-align:top;
+}
+
+.chart {
+    display:inline-block;
+    vertical-align:top;
+
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  stroke: #000;
+}
+
+
+
+.tooltip {
+  background: #eee;
+  box-shadow: 0 0 5px #999999;
+  color: #333;
+  display: none;
+  fnt-size: 12px;
+  left: 130px;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  top: 250px;
+  width: 180px;
+  z-index: 10;
+}
+
+.titletooltip {
+  background: #eee;
+  box-shadow: 0 0 5px #999999;
+  color: #333;
+  display: none;
+  font-size: 12px;
+  left: 40px;
+  padding: 10px;
+  position: absolute;
+  text-align: left;
+  top: 100px;
+  width: 350px;
+  z-index: 10;
+}
+
+
+.question {
+    background: #FFFFFF;
+    padding:5px;
+    border:1px solid grey;
+}
+
+.answers {
+    background: #FFFFFF;
+    padding:5px;
+    border:1px solid grey;
+}
+
+
+
+#links {
+    display: inline-block;
+    width: 650px;
+}
+
+#comparecharts {
+    width: 160px;
+    display:inline-block;
+    vertical-align: top;
+    
+}
+
+#toggleSecondChart {
+    width: 150px;
+    float: right;
+}
