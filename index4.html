@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+ 
+<style>
+body {
+  font: 10px sans-serif;
+}
+
+#copy {
+
+    width:240px;
+    display:inline-block;
+    vertical-align:top;
+    }
+
+#charts {
+    display:inline-block;
+    }
+.chart {
+    display:inline;
+    }
+
+    .spacer {
+	height:15px;
+    }
+	   
+
+.styled-select select {
+   background: transparent;
+   width: 240px;
+   padding: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border: 0;
+   border-radius: 0;
+   height: 28px;
+	-webkit-appearance: none;
+	-moz-appearance:none;
+}
+
+
+.styled-select {
+   width: 240px;
+    height: 28px;
+    overflow: hidden;
+    padding-left:28px;
+   border: 1px solid #ccc;
+}
+
+#subject-select {
+   background: url(svg/education36.svg) no-repeat left/28px 28px;
+ }
+#attitude-select {
+   background: url(svg/student53.svg) no-repeat left/28px 28px;
+ }
+#school-select {
+   background: url(svg/school50.svg) no-repeat left/28px 28px;
+ }
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  stroke: #000;
+}
+
+</style>
+</head>
+
+    <body>
+    <span id = "title">
+    <h1>PISA 2012 - The relationship of student attitudes to results</h1>
+    </span>
+    <div id = "copy">
+<p>
+In the PISA 2012 survey, 15 year old students accross the world were assessed for their abilities in mathmatics, science and reading.
+    </p>
+    <p>
+The students were also asked to answer a questionaire investigating, among other things, their attitude towards school. 
+    </p>
+    <p>
+
+There was also a school questionaire filled out by the senior administrator in each school. 
+    </p>
+    <p>
+
+This graphic is looking only at schools in the United Kingdom and the relationship between the students attitude and their grade in each of the three subjects. 
+    </p>
+    <p>
+
+Students were asked how much they agree or dissagree with a number of statements. In this case, the statement was 'School has been a waste of time.' 
+    </p>
+    <p>
+
+The first chart shows the percentage of students that gave each answer (along the y axis) along with their average score in one of the skills (in this case, Maths). 
+    </p>
+    <p>
+
+As we might expect, the students who strongly agreed that school had been a waste of time had the lowest scores. Of course correlation does not equal causation and it is possible that the students who strongly agreed, were in fact correct in believing that school had not been a good use of their time. 
+    </p>
+    <p>
+
+The third to sixth charts show the same data looking at the schools from the 0 to 25th percentile (in this case, of the schools average Maths scores), the 25th to 50th, the 50th to 75th and 75th to 100th percentile. 
+    </p>
+    <p>
+
+The second chart shows the average scores for each percentile bin. It can also show the schools divided by answers to the school questionaire regarding the resources available to the school.
+
+</p>
+<p>
+You can adjust the parameters of the charts below.
+</p>
+
+
+Subject for average score comparison: 
+    <div class = "styled-select" id = "subject-select">
+<select id = "subject">
+<option value="maths">Student Maths score</option>
+<option value="read">Student Reading score</option> 
+<option value="scie">Student Science score</option>
+</select>    
+</div>
+
+Attitude statement that students agree or disagree with:
+    <div class = "styled-select" id = "attitude-select">
+<select id = "attitude">
+</select>    
+</div>
+
+Subject of school percentiles or availabilty of resources at school:
+    <div class = "styled-select" id = "school-select">
+  <select id = "school">
+  </select>    
+</div>
+
+
+
+
+
+
+</div>
+ <div id = "charts"> 
+    <div class = "spacer">
+</div>
+
+<div> 
+</div>
+    <div id = "chartone" class = "chart"> 
+</div>
+    <div id = "charttwo" class = "chart"> </div>
+
+    <div class = "spacer">
+</div>
+  
+ <span id = "chartthree"> </span>
+    <span id = "chartfour"> </span>
+    <div class = "spacer"><p></p></div>
+    
+ <span id = "chartfive"> </span>
+ <span id = "chartsix"> </span>
+    <div class = "spacer"></div>
+</div>
+
+    <div id = "links">
+    LINKS <br>
+    Pisa 2012 Results: <a href="http://www.oecd.org/pisa/keyfindings/pisa-2012-results.htm">http://www.oecd.org/pisa/keyfindings/pisa-2012-results.htm</a><br>
+    Student Questionaire: <a href="https://nces.ed.gov/surveys/pisa/pdf/MS12_StQ_FormB_ENG_USA_final.pdf">https://nces.ed.gov/surveys/pisa/pdf/MS12_StQ_FormB_ENG_USA_final.pdf</a>
+    <br>
+    School Questionaire:  <a href="https://nces.ed.gov/surveys/pisa/pdf/MS12_ScQ_USA_final.pdf">https://nces.ed.gov/surveys/pisa/pdf/MS12_ScQ_USA_final.pdf
+</a>
+    <br>
+    Icons: <a href="http://www.freepik.com">designed by freepik</a>
+
+</div> 
+
+
+
+
+<script src="d3.v3.min.js"></script>
+    <script>
+
+var divs_arr = ["#chartone","#charttwo","#chartthree","#chartfour","#chartfive","#chartsix"]
+var attitudes_arr = [
+    ["ST86Q01","Students get along well with most teachers","Q39"],
+    ["ST86Q02","Most teachers are interested in students well-being","Q39"],
+    ["ST86Q03","Most of my teachers really listed to what I have to say.","Q39"],
+    ["ST86Q04","If I need extra help, I will receive it from my teachers.","Q39"],
+    ["ST86Q05","Most of my teachers treat me fairly.","Q39"],
+    ["ST87Q01","I feel like an outsider (or left out of things) at school.","Q40"],
+    ["ST87Q02","I make friends easily at school","Q40"],
+    ["ST87Q03","I feel like I belong at school.","Q40"],
+    ["ST87Q04","I feel awkward and out of place in my school.","Q40"],
+    ["ST87Q05","Other students seem to like me","Q40"],
+    ["ST87Q06","I feel lonely at school.","Q40"],
+    ["ST87Q07","I feel happy at school.","Q40"],
+    ["ST87Q08","Things are ideal in my school.","Q40"],
+    ["ST87Q09","I am satisfied with my school.","Q40"],
+    ["ST88Q01","School has done little to prepare me for adult life when I leave school.","Q41"],
+    ["ST88Q02","School has been a waste of time.","Q41"],
+    ["ST88Q03","School has helped give me confidence to make decisions.","Q41"],
+    ["ST88Q04","School has taught me things which could be useful in a job.","Q41"],
+    ["ST89Q02","Trying had at school will help me get a good job.","Q42"],
+    ["ST89Q03","Trying hard at school will help me get into a good college.","Q42"],
+    ["ST89Q04","I enjoy receiving good grades.","Q42"],
+    ["ST89Q05","Trying hard at school is important.","Q42"],
+    ["ST91Q01","If I put in enough effort I can succeed in school.","Q43"],
+    ["ST91Q02","It is completely my choice whether or not I do well at school.","Q43"],
+    ["ST91Q03","Family demands or other problems prevent me from putting a lot of time into my school work.","Q43"],
+    ["ST91Q04","If I had different teachers I would try harder at school.","Q43"],
+    ["ST91Q05","If I wanted to I could do well in school.","Q43"],
+    ["ST91Q06","I do badly in school whether or not I study for my exams.","Q43"]
+    ]
+
+var main_titles = [
+"Students Attitudes",
+"School Variable",
+"Students Attitude by school variable",
+"Students Attitude by school variable",
+"Students Attitude by school variable",
+"Students Attitude by school variable",											   
+]
+
+var attitudes_domain = ["Strongly Agree","Agree","Disagree","Strongly Disagree"]
+var school_arr = [
+    ["schoolmath","0-25,25-50,50-75,75-100 Percentiles (Maths)"],
+    ["schoolread","0-25,25-50,50-75,75-100 Percentiles (Reading)"],
+    ["schoolscie","0-25,25-50,50-75,75-100 Percentiles (Science)"],
+    ["SC14Q01","a) A lack of qualified science teachers"],
+    ["SC14Q02","b) A lack of qualified mathematics teachers"],
+    ["SC14Q03","c) A lack of qualified English teachers"],
+    ["SC14Q04","d) A lack of qualified teachers of other subjects"],
+    ["SC14Q05","e) Shortage or inadequacy of science laboratory equipment"],
+    ["SC14Q06","f) Shortage or inadequacy of instructional materials (e.g., textbooks)"],
+    ["SC14Q07","g) Shortage or inadequacy of computers for instruction"],
+    ["SC14Q08","h) Lack or inadequacy of Internet connectivity"],
+    ["SC14Q09","i) Shortage or inadequacy of computer software for instruction"],
+    ["SC14Q010","j) Shortage or inadequacy of library materials"]
+    ]
+
+var school_domain = ["Not at all","Very Little","To some extent","A lot"]
+var percentile_domain = ["0 to 25th Percentile","25th to 50th Percentile","50th to 75th Percentile","75th to 100th Percentile"]
+    
+// var margin = {top: 40, right: 20, bottom: 30, left: 40},
+//     width = 340 - margin.left - margin.right,
+//     height = 310 - margin.top - margin.bottom,
+//     swidth = 260 - margin.left - margin.right,
+//     sheight = 180 - margin.top - margin.bottom;
+
+var color = d3.scale.category10();
+var schoolcolor = d3.scale.ordinal().range(['#9467bd','#8c564b', '#e377c2','#bcbd22'])
+
+
+// var x = d3.scale.linear()
+//     .range([0, width]);
+
+
+
+// var y = d3.scale.linear()
+//     .range([height,0]);
+
+
+
+
+// set inintial parameters
+var subject_var = "maths"
+
+var attitude_var = "ST88Q02"
+
+var ukschools;
+
+var chartdata;
+
+function getAttitudeString () {
+    for (i = 0; i<=attitudes_arr.length; i++) {
+	if (attitudes_arr[i][0]==attitude_var) {
+	    return attitudes_arr[i][1]
+	} 
+
+    }
+
+}
+function getSchoolString () {
+    for (i = 0; i<=school_arr.length; i++) {
+	if (school_arr[i][0]==school_var) {
+	    return school_arr[i][1]
+	} 
+
+    }
+
+}
+
+
+d3.csv("uk_studentsThree.csv",function(error, data) {
+     if (error) throw error;
+     ukschools = data;
+     drawChart();
+ });
+
+var school_var = "schoolmath"
+
+var svgs = [];
+var xAxiss = [];
+var yAxiss = [];
+var legends = [];
+var attitude_el = document.getElementById("attitude");
+for (i = 0; i < attitudes_arr.length;i++) {
+		var option = document.createElement("option");
+		option.setAttribute("value", attitudes_arr[i][0]);
+		option.text = attitudes_arr[i][1];
+		attitude_el.appendChild(option);
+}
+
+var school_el = document.getElementById("school");
+for (i = 0; i < school_arr.length;i++) {
+		var option = document.createElement("option");
+		option.setAttribute("value", school_arr[i][0]);
+		option.text = school_arr[i][1];
+		school_el.appendChild(option);
+}
+
+d3.select('#attitude')
+    .property( "value", attitude_var )   
+    .on('change', function() {
+	var newData = d3.select(this).property('value');
+	attitude_var = newData;
+	updateChart();
+    });
+
+
+d3.select('#school')
+    .property( "value", school_var )   
+    .on('change', function() {
+	var newData = d3.select(this).property('value');
+	school_var = newData;
+	updateChart();
+    });
+
+
+
+
+
+
+
+
+
+
+d3.select('#subject')
+    .property( "value", subject_var ) 
+    .on('change', function() {
+	var newData = d3.select(this).property('value');
+	subject_var = newData;
+	updateChart();
+    });
+
+    
+
+    
+
+
+function drawChart() {
+    //convert values to ints
+    ukschools.forEach(function(d) {
+    	d.maths = Math.floor(+d.maths);
+    	d.scie = Math.floor(+d.scie);
+    	d.read = Math.floor(+d.read);
+    	d.SCHOOLID = +d.SCHOOLID;
+    	for (i = 0; i < attitudes_arr.length; i++){
+    	    thisstring = "d."+attitudes_arr[i][0]+";"
+    	    thisdatum = eval(thisstring);
+    	    thisdatum = Math.floor(+thisdatum);
+    	}
+    	for (i = 0; i < school_arr.length; i++){
+    	    thisstring = "d."+school_arr[i][0]+";"
+    	    thisdatum = eval(thisstring);
+    	    thisdatum = Math.floor(+thisdatum);
+    	}
+
+    });
+
+    chartdata = makeChartData()
+   
+    makeChart(0)
+    makeChart(1)
+    makeChart(2)
+    makeChart(3)
+    makeChart(4)
+    makeChart(5)
+
+}
+
+function makeChartData() {
+    thesechartsdata = []
+//    var subject_var = "math"
+    //    var attitude_var = "ST88Q02"
+
+
+    
+    thisdata = {"sagreetotal":0,"sagreenum":0,
+		"agreetotal":0,"agreenum":0,
+		"dagreetotal":0,"dagreenum":0,
+		"sdagreetotal":0,"sdagreenum":0}
+    
+    for (i = 0; i<ukschools.length;i++) {
+	if (ukschools[i][attitude_var] == "Strongly agree") {
+	    thisdata["sagreetotal"] = thisdata["sagreetotal"] + ukschools[i][subject_var];
+	    thisdata["sagreenum"] = thisdata["sagreenum"] + 1;
+	}
+	else if (ukschools[i][attitude_var] == "Agree") {
+	    thisdata["agreetotal"] = thisdata["agreetotal"] + ukschools[i][subject_var];
+	    thisdata["agreenum"] = thisdata["agreenum"] + 1;
+	}
+	else if (ukschools[i][attitude_var] == "Disagree") {
+	    thisdata["dagreetotal"] = thisdata["dagreetotal"] + ukschools[i][subject_var];
+	    thisdata["dagreenum"] = thisdata["dagreenum"] + 1;
+	}
+	else if (ukschools[i][attitude_var] == "Strongly disagree") {
+	    thisdata["sdagreetotal"] = thisdata["sdagreetotal"] + ukschools[i][subject_var];
+	    thisdata["sdagreenum"] = thisdata["sdagreenum"] + 1;
+	}   
+
+
+    }
+    thischartdata = getPercentAndScores(thisdata)
+    
+  
+    thesechartsdata.push(thischartdata)
+
+
+    thesecatagories = []
+
+
+    thisdata = {"sagreetotal":0,"sagreenum":0,
+		"agreetotal":0,"agreenum":0,
+		"dagreetotal":0,"dagreenum":0,
+		"sdagreetotal":0,"sdagreenum":0}
+    
+    for (i = 0; i<ukschools.length;i++) {
+	if (ukschools[i][school_var] == "0" || ukschools[i][school_var] == "1.0") {
+	    thisdata["sagreetotal"] = thisdata["sagreetotal"] + ukschools[i][subject_var];
+	    thisdata["sagreenum"] = thisdata["sagreenum"] + 1;
+	}
+	else if (ukschools[i][school_var] == "1" || ukschools[i][school_var] == "2.0") {
+	    thisdata["agreetotal"] = thisdata["agreetotal"] + ukschools[i][subject_var];
+	    thisdata["agreenum"] = thisdata["agreenum"] + 1;
+	}
+	else if (ukschools[i][school_var] == "2"|| ukschools[i][school_var] == "3.0") {
+	    thisdata["dagreetotal"] = thisdata["dagreetotal"] + ukschools[i][subject_var];
+	    thisdata["dagreenum"] = thisdata["dagreenum"] + 1;
+	}
+	else if (ukschools[i][school_var] == "3" || ukschools[i][school_var] == "4.0") {
+	    thisdata["sdagreetotal"] = thisdata["sdagreetotal"] + ukschools[i][subject_var];
+	    thisdata["sdagreenum"] = thisdata["sdagreenum"] + 1;
+	}  
+
+
+    }
+    thischartdata = getPercentAndScores(thisdata)
+    
+  
+    thesechartsdata.push(thischartdata)
+
+    for (i = 0; i<=3; i++) {
+	
+	thisdata = {"sagreetotal":0,"sagreenum":0,
+		    "agreetotal":0,"agreenum":0,
+		    "dagreetotal":0,"dagreenum":0,
+		    "sdagreetotal":0,"sdagreenum":0}
+	function checkschool (d) {
+	    thisschool = false;
+
+	    thisvalue = ukschools[d][school_var]
+	    if (thisvalue == i.toString() || thisvalue == (i+1).toString() + ".0") {
+		thisschool = true;
+	    } else if (thisvalue != 2) {
+
+	    }
+	    return thisschool;
+	}
+
+	
+	for (j = 0; j<ukschools.length;j++) {
+	    if (checkschool(j) && ukschools[j][attitude_var] == "Strongly agree") {
+		thisdata["sagreetotal"] = thisdata["sagreetotal"] + ukschools[j][subject_var];
+		thisdata["sagreenum"] = thisdata["sagreenum"] + 1;
+	    }
+	    else if (checkschool(j) && ukschools[j][attitude_var] == "Agree") {
+		thisdata["agreetotal"] = thisdata["agreetotal"] + ukschools[j][subject_var];
+		thisdata["agreenum"] = thisdata["agreenum"] + 1;
+	    }
+	    else if (checkschool(j) && ukschools[j][attitude_var] == "Disagree") {
+		thisdata["dagreetotal"] = thisdata["dagreetotal"] + ukschools[j][subject_var];
+		thisdata["dagreenum"] = thisdata["dagreenum"] + 1;
+	    }
+	    else if (checkschool(j) && ukschools[j][attitude_var] == "Strongly disagree") {
+		thisdata["sdagreetotal"] = thisdata["sdagreetotal"] + ukschools[j][subject_var];
+		thisdata["sdagreenum"] = thisdata["sdagreenum"] + 1;
+	    }   
+
+	}
+	thischartdata = getPercentAndScores(thisdata)
+	
+	
+	thesechartsdata.push(thischartdata)
+	
+    }
+
+
+    
+    return thesechartsdata
+}
+
+// get perecentages and scores from results dictionary 
+function getPercentAndScores(data) {
+    
+    totalnum = data["sagreenum"]+data["agreenum"]+data["dagreenum"]+data["sdagreenum"]
+    sapercent = (data["sagreenum"]/totalnum)*100;
+    apercent = (data["agreenum"]/totalnum)*100;
+    dpercent = (data["dagreenum"]/totalnum)*100;
+    sdpercent = (data["sdagreenum"]/totalnum)*100;
+    saave = 0;
+    aave = 0;
+    dave = 0;
+    sdave = 0;
+    if (data["sagreenum"]>0) {
+	
+	saave = (data["sagreetotal"]/data["sagreenum"])
+    }
+    if (data["agreenum"]>0) {
+	aave = (data["agreetotal"]/data["agreenum"])
+    }
+    if (data["dagreenum"]>0) {
+	dave = (data["dagreetotal"]/data["dagreenum"])
+    }
+    if (data["sdagreenum"]>0) {
+        sdave = (data["sdagreetotal"]/data["sdagreenum"])
+    }
+   
+    
+    thisPercentAndScores = [{startpercent:0,percent:sapercent,score:saave},
+			    {startpercent:sapercent,percent:apercent+sapercent,score:aave},
+			    {startpercent:apercent+sapercent,percent:apercent+sapercent+dpercent,score:dave},
+			    {startpercent:dpercent+apercent+sapercent,percent:100,score:sdave}]
+    
+    return thisPercentAndScores;
+
+    
+
+    
+
+}
+
+function isPercentileQ () {
+    if (school_var == "schoolmath" ||school_var == "schoolread" || school_var == "schoolscie") {
+	return true;
+    }
+    return false;
+}
+
+ function getTicks (datanum) {
+	if (datanum == 1) {
+	    return 0;
+	} 
+	return 10;
+    }
+
+function getXText (datanum) {
+    if (datanum == 1 && isPercentileQ()) {
+	if (school_var == "schoolmath" ) {
+	    return "Average School Math scores for percentile bins";
+	} 
+	else if (school_var == "schoolread" ) {
+	    return "Average School Reading scores for percentile bins";
+	}
+	else {
+	    return "Average School Science scores for percentile bins";
+	}
+	
+    } 
+    return "Percentage of school answers";
+}
+
+function getYText () {
+    if (subject_var == "maths") {
+	return "Average score in Maths";
+    }
+    else if (subject_var == "read") {
+	return "Average score in Reading";
+        }
+    else {
+	return "Average score in Science";
+        }
+}
+
+
+  function getTitleText(chartnum) {
+	if (chartnum == 0) {
+	    return getAttitudeString();
+	}
+	else if (chartnum == 1) {
+	    return getSchoolString();
+	}
+	else if (chartnum < 6) {
+	    return get_school_domain(chartnum - 2)
+	}
+	return ""
+    }
+
+function makeChart(datanum) { 
+
+
+    
+//    margin = {top: 20, right: 20, bottom: 30, left: 40};
+    if (datanum == 0 || datanum == 1) {
+//	width = 340 - margin.left - margin.right;
+	//	height = 310 - margin.top - margin.bottom;
+	    margin = {top: 40, right: 20, bottom: 30, left: 40};
+	width = 340 - margin.left - margin.right;
+	height = 310 - margin.top - margin.bottom;
+
+    }
+    else {
+//    width = 260 - margin.left - margin.right;
+	//    height = 180 - margin.top - margin.bottom;
+	    margin = {top: 30, right: 60, bottom: 30, left: 80};
+
+	    width = 340 - margin.left - margin.right;
+	    height = 180 - margin.top - margin.bottom;
+
+    }
+
+
+//	width = 340 - margin.left - margin.right;
+//	height = 310 - margin.top - margin.bottom;
+
+    
+    x = d3.scale.linear()
+    .range([0, width]);
+
+
+
+    y = d3.scale.linear()
+    .range([height,0]);
+
+    
+    x.domain([0,100]);
+
+    y.domain([300,700]);
+
+
+    
+    var svg = d3.select(divs_arr[datanum]).append("svg")
+    	.attr("width", width + margin.left + margin.right)
+    	.attr("height", height + margin.top + margin.bottom)
+    	.append("g")
+    	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+ 
+    var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+	.ticks(getTicks(datanum));
+     
+    svg.append("g")
+    	.attr("class", "x axis")
+    	.attr("transform", "translate(0," + height + ")")
+    	.call(xAxis)
+    	.append("text")
+    	.attr("class", "x_label")
+    	.attr("x", width)
+    	.attr("y", 25)
+    	.style("text-anchor", "end")
+    	.text(getXText(datanum));
+
+
+    
+    var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+		
+    svg.append("g")
+	.attr("class", "y axis")
+	.call(yAxis)
+	.append("text")
+	.attr("class", "y_label")
+	.attr("transform", "rotate(-90)")
+	.attr("y", -40)
+	.attr("dy", ".71em")
+	.style("text-anchor", "end")
+	.text(getYText());
+
+   
+
+    svg.selectAll(".bar")
+    	.data(chartdata[datanum])
+    	.enter()
+    	.append("rect")
+    	.attr("class","bar")
+    	.attr("x",function(d,i) {return x(d.startpercent);})
+    	.attr("y",function(d) {return height-(height-y(d.score))})
+    	.attr("width",function(d) {return x(d.percent-d.startpercent);})
+    	.attr("height",function(d,i){
+    	    return height - y(d.score);})
+    	.style("fill", function(d,i) {
+	    if (datanum == 1) {
+		return schoolcolor(i)}
+	    else {
+		return color(i)
+	    }
+	});
+    
+    function get_font_size() {
+
+	if (datanum < 2) {
+	    return "20px"
+	}
+	return "8px";
+
+    }
+
+    svg.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 0 - (margin.top/2))
+	.attr("class","main_title")
+    	.attr("text-anchor", "middle")  
+        .style("font-size",get_font_size())
+        .text(main_titles[datanum]);
+  
+    
+    svg.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 0 - (margin.top/5))
+	.attr("class","title")
+    	.attr("text-anchor", "middle")  
+        .style("text-decoration", "underline")  
+        .text(getTitleText(datanum));
+
+    if (datanum != 0 && datanum != 1) {
+    
+    svg.append("rect")
+	.attr("x",(width - 20))
+    	.attr("y", 0 - (margin.top - 10))
+	.attr("class","school_legend")
+        .attr("width", 20)
+    	.attr("height", 20)
+    	.style("fill", function () {
+		    return schoolcolor(datanum - 2)
+	});
+
+    }
+
+    
+    if (datanum == 0 || datanum == 1) {
+    
+	
+	var legend = svg.selectAll(".legend")
+    	    .data(color.domain())
+    	    .enter().append("g")
+    	    .attr("class", "legend")
+    	    .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; })
+	
+	legend.append("rect")
+    	    .attr("x", width - 18)
+    	    .attr("width", 18)
+    	    .attr("height", 18)
+    	    .style("fill", function (d) {
+		if (datanum == 0) {
+		    return color(d)
+		}
+		else
+		{
+		    return schoolcolor(d);
+		}
+	    });
+
+	legend.append("text")
+	    .attr("class","text")
+    	    .attr("x", width - 24)
+    	    .attr("y", 9)
+    	    .attr("dy", ".35em")
+    	    .style("text-anchor", "end")
+    	    .text(function(d) {
+		if (datanum == 0) {
+		    return attitudes_domain[d];
+		}
+		else
+		{
+		    return get_school_domain(d)
+		}
+		    
+	    });
+
+    }
+   
+    
+    svgs[datanum] = svg
+    xAxiss[datanum] = xAxis
+    yAxiss[datanum] = yAxis
+    if (datanum == 0 || datanum == 1) {
+    legends[datanum] = legend
+    }
+		
+};
+
+
+
+
+
+function updateChart() {
+   for (k = 0; k< svgs.length; k++) {
+	updateChartNum(k)
+    }
+//    updateChartNum(0)
+//    updateChartNum(1)
+
+}
+
+
+function updateChartNum(chartnum) {
+   if (chartnum == 0 || chartnum == 1) {
+//	width = 340 - margin.left - margin.right;
+	//	height = 310 - margin.top - margin.bottom;
+	    margin = {top: 40, right: 20, bottom: 30, left: 40};
+	width = 340 - margin.left - margin.right;
+	height = 310 - margin.top - margin.bottom;
+
+    }
+    else {
+//    width = 260 - margin.left - margin.right;
+	//    height = 180 - margin.top - margin.bottom;
+	    margin = {top: 30, right: 60, bottom: 30, left: 80};
+
+	    width = 340 - margin.left - margin.right;
+	    height = 180 - margin.top - margin.bottom;
+
+    }
+
+    
+    // margin = {top: 20, right: 20, bottom: 30, left: 40};
+    // if (chartnum == 0 || chartnum == 1) {
+    // width = 340 - margin.left - margin.right;
+    // 	height = 310 - margin.top - margin.bottom;
+    // }
+    // else {
+    // width = 260 - margin.left - margin.right;
+    // height = 180 - margin.top - margin.bottom;
+    // }
+
+   x = d3.scale.linear()
+    .range([0, width]);
+
+
+
+    y = d3.scale.linear()
+    .range([height,0]);
+
+    
+    x.domain([0,100]);
+
+    y.domain([300,700]);
+    
+    chartdata = makeChartData()
+    svg = svgs[chartnum]
+    xAxis = xAxiss[chartnum]
+    yAxis = yAxiss[chartnum]
+    svg.selectAll(".bar")
+    	.data(chartdata[chartnum])
+	.transition()
+       	.duration(100)
+    	.attr("x",function(d,i) {return x(d.startpercent);})
+    	.attr("y",function(d) {return height-(height-y(d.score))})
+    	.attr("width",function(d) {return x(d.percent-d.startpercent);})
+    	.attr("height",function(d,i){
+    	    return height - y(d.score);});
+ 
+    if (chartnum == 1) {
+	legend = legends[chartnum]
+	legend.selectAll(".text")
+	    .transition()
+	    .text(function(d) {
+		return get_school_domain(d);
+	    })
+		    
+    }
+    
+    svg.selectAll(".y_label")
+     	.text(getYText())
+
+    svg.selectAll(".x_label")
+     	.text(getXText(chartnum))
+
+    svg.selectAll(".title")
+     	.text(getTitleText(chartnum))
+
+
+
+    
+    
+
+   
+}
+
+function get_school_domain(d) {
+    if (isPercentileQ()) {
+	return percentile_domain[d];
+    } else  {
+	return school_domain[d];
+    }
+}
+
+</script>
+    </body>
+    </html>
