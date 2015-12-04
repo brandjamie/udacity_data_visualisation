@@ -1,324 +1,322 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
- <script src="attitudes_arr.js"></script>
+    <meta charset="utf-8">
+    <!-- issue with memory management - perhaps keeping variables in memory after refresh? -->
+<meta http-equiv="Cache-control" content="no-cache">
 
-<style>
-body {
-  font: 10px sans-serif;
-}
+    <link rel="stylesheet" href="css/jquery.slider.min.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="css/index6.css" type="text/css" charset="utf-8">
 
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
+    
+    <script type="text/javascript" src="js/jquery-1.7.1.js"></script>
 
-.dot {
-  stroke: #000;
-}
 
-</style>
+    <script type="text/javascript" src="js/jquery.slider.min.js"></script> 
+
+
+
+    <script>
+
+
+jQuery(document).ready(function(){
+
+    jQuery("#Slider1").slider({ from: 220, to: 720, step: 10, smooth: true, round: 0, skin: "round",  callback: function( value ){
+	slider_one_mouse_up( value );}  });
+  
+   jQuery("#Slider2").slider({ from: 220, to: 720, step: 10, smooth: true, round: 0, skin: "round",  callback: function( value ){
+	slider_two_mouse_up( value );}  });
+   });
+
+
+</script>
+
+
 </head>
 
-<body>
-<select id = "student">
-<option value="math">Student Maths score</option>
-<option value="read">Student Reading score</option> 
-<option value="scie">Student Science score</option>
+    <body>
+    <span id = "title">
+    <h1>PISA 2012 - The relationship of student attitudes to results</h1>
+    </span>
+    <div id = "copy">
+<p>
+8202 students in 507 schools accross the uk took part in the 2012 pisa
+Survey. The students answered a questionaire investigating, among
+other things, their attitude towards school and were graded on their
+abilities in maths, science and reading. An additional questionaire
+was filled out by the senior administrator in each school. 
+</p>
+<p>
+The chart shows how students who showed positive attitudes towards school in the PISA questionaire tended to have higher scores in the PISA tests for maths, science and reading. The relationship remained the same accross different groups of schools.
+
+</p>
+<p>
+The responses to different attitude statements can be explored by changing the 'Students Attitudes' drop down box. The schools included in the charts can by filtered, either by the schools average score or by the responses of the schools senior administrator to questions in the school questionaire. The scoring subject(s) can be changed and a second chart can be added to the visualisation to make comparisons easier. 
+  </p>
+    </div>
+    <div id="first_chart"> 
+
+
+
+
+
+    <div class = "spacer"></div>
+
+    <div id = "chartone" class = "chart"> 
+    </div>
+<div class = "controls">
+  <div class = "selection_one">
+    <h2 id="student_attitudes1"><img src="svg/student53.svg" height=28 width=28>
+    Student Attitudes</h2>
+    From the student questionaire:
+
+    <br>
+    <br>
+    To what extend to you agree with the following statement?
+
+
+    <div class = "styled-select" id = "attitude-select">
+<select id = "attitude" class = "attitude">
 </select>    
-
-<body>
-<select id = "school">
-<option value="math">School Maths score</option>
-<option value="read">School Reading score</option> 
-<option value="scie">School Science score</option>
-</select>    
+    </div>
+</div> 
 
 
-<body>
-<select id = "attitude">
-</select>    
-
-
-
-  <script src="d3.v3.min.js"></script>
-  <script>
-
-
-
-
-    
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
-
-var student_var = "math"
-
-var school_var = "math"
-
-var attitude_var = "ST88Q02"
-
-var school_var = 0;
-var x = d3.scale.linear()
-    .range([0, width]);
-
-var y = d3.scale.linear()
-    .range([height,0]);
-
-var color = d3.scale.category10();
-var color = d3.scale.ordinal().range(['#1f77b4','#9467bd','#2ca02c','#ff7f0e','#d62728'])
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
-
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left");
-
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-var ukschools
-var ukstudents
-var remaining = 2
-
-d3.csv("ukschools.csv",function(error, data) {
-    if (error) throw error;
-    ukschools = data;
-    if (!--remaining) drawChart();
-})
-
-d3.csv("uk_students.csv", function(error, data) {
-    if (error) throw error;
-    ukstudents = data;
-    if (!--remaining) drawChart();
-})
-function getColor(d) {
-return eval ("d."+attitude_var)
-}
-
-function getSchoolGrade(schoolid) {
-    grade = 0;
-    ukschools.forEach(function(d) {
-	d.SCHOOLID = +d.SCHOOLID;
-	if (d.SCHOOLID == schoolid && grade == 0) {
-	    if (school_var == "maths")  {
-		grade = +d.math;
-	    }
-	    else if (school_var == "read")   {
-		grade = +d.read;
-	    }
-	    else   {
-		grade = +d.scie;
-	    }
-	   
-	}
-    })
-return grade
-}
-
-
-
-
-
-d3.select('#student')
-  .on('change', function() {
-    var newData = d3.select(this).property('value');
-      student_var = newData;
-updateChart();
-});
-d3.select('#school')
-  .on('change', function() {
-    var newData = d3.select(this).property('value');
-      school_var = newData;
-updateChart();
-});
-
-
-var attitude_el = document.getElementById("attitude");
-for (i = 0; i < attitudes_arr.length;i++) {
-		var option = document.createElement("option");
-		option.setAttribute("value", attitudes_arr[i][0]);
-		option.text = attitudes_arr[i][1];
-		attitude_el.appendChild(option);
-}
-
-d3.select('#attitude')
-		.on('change', function() {
-    var newData = d3.select(this).property('value');
-      attitude_var = newData;
-		updateChart();
-});
-
-
-function drawChart() {
-  ukstudents.forEach(function(d) {
-    d.maths = Math.floor(+d.maths);
-    d.scie = Math.floor(+d.scie);
-    d.read = Math.floor(+d.read);
-
-
-
-      if (student_var == "maths") {
-	  d_student_var = d.maths
-      }
-      else if (student_var == "read") {
-	  d_student_var = d.read
-      }
-      else {
-	  d_student_var = d.scie
-      }
-       
-
-
+    <div class="select_three">
       
-d.SCHOOLID = +d.SCHOOLID;
-  });
+    <h2 id="school_filter1"><img src="svg/school50.svg" height=28 width=28>
+    Filter Schools</h2>
 
-    x.domain([300,700]);
-  //  x.domain(d3.extent(ukstudents, function(d) { return getSchoolGrade(d.SCHOOLID); })).nice();
-    y.domain([150,800]);
+    <div class="layout-slider" style="display: inline-block">
+      <div id="school_score_filter1">
+    Filter by average score of school:
+<label class="switch">
+
+      <input id="score_toggle" type="checkbox" class="switch-input" unchecked>
+
+      <span class="switch-label" data-on="On" data-off="Off"></span>
+
+      <span class="switch-handle"></span>
+
+    </label>
+</div>
+  <br>
+   <div class = "spacer"></div>
+
+
+   
+   <div id="sliderdiv1" class="toggle-container" style="display: block; width: 270px; padding: 0 5px;"><input id="Slider1" type="slider" name="price" value="300.5;800" /></div>  
+    </div>
+ 
+
+
+    <div class = "spacer">
+    <br>
+    </div>
+    <div id="quest_filter_tooltip1">
+    Filter by the school questionaire:
+<label class="switch">
+
+      <input id="question_toggle" type="checkbox" class="switch-input" checked>
+
+      <span class="switch-label" data-on="On" data-off="Off"></span>
+
+      <span class="switch-handle"></span>
+
+    </label>
+</div>
+<br>
+<div id="school-container1" class="toggle-container">
+    Is your school’s capacity to provide instruction hindered by any of the following issues? 
+
+    <div class = "styled-select" id = "school-select">
+  <select id = "school" class="school">
+  </select>    
+    </div>
+    Select answers to allow through filter: 
+    <div id="school_domain_check_boxes">
+</div>
+
+
+</div>
+
+
+
+</div>
+
   
-    var xlab = document.getElementById("school");
-    xlabtxt = xlab.selectedIndex
-    xlabtxt = xlab.options[xlabtxt].text
+    <div class="select_two">
+    <h2 id="subject_tooltip1"><img src="svg/education36.svg" height=28 width=28>
+  
+Scoring Subject:
+</h2>
+    <div class = "styled-select" id = "subject-select">
+<select id = "subject">
+    <option value="ave">Average of maths, reading and science scores</option>
+<option value="maths">Maths scores</option>
+<option value="read">Reading scores</option> 
+<option value="scie">Science scores</option>
+</select>    
+</div>
+</div>
+</div>
 
-    var ylab = document.getElementById("school");
-    ylabtxt = ylab.selectedIndex
-    ylabtxt = ylab.options[ylabtxt].text
-    svg.selectAll(".y_label")
-    	.text(ylabtxt)
+
+   <div class = "spacer"></div>
+
+
+    </div>
+
+    <div class = "spacer"><br></div>
+<!-- second chart ________________________-->
+
+    <div id="second_chart"> 
+
+
+
+
+
+    <div class = "spacer"></div>
+
+    <div id = "charttwo" class = "chart"> 
+    </div>
+<div class = "controls">
+    <div class = "selection_one">
+    <h2 id="student_attitudes2"><img src="svg/student53.svg" height=28 width=28>
+    Student Attitudes</h2>
+    From the student questionaire:
+
+    <br>
+    <br>
+    To what extend to you agree with the following statement?
+
+
+    <div class = "styled-select" id = "attitude-select">
+<select id = "attitudeb" class = "attitude">
+</select>    
+    </div>
+</div> 
+
+
+    <div class="select_three">
+      
+    <h2 id = "school_filter2"><img src="svg/school50.svg" height=28 width=28>
+    Filter Schools</h2>
+
+    <div class="layout-slider" style="display: inline-block">
+           <div id="school_score_filter2">
+    Filter by average score of school:
+<label class="switch">
+
+      <input id="score_toggleb" type="checkbox" class="switch-input" unchecked>
+
+      <span class="switch-label" data-on="On" data-off="Off"></span>
+
+      <span class="switch-handle"></span>
+
+    </label>
+</div>
+   <br>
+   <div class = "spacer"></div>
+
+
+   
+   <div id="sliderdiv2" class="toggle-container" style="display: block; width: 270px; padding: 0 5px;"><input id="Slider2" type="slider" name="price" value="300.5;800" /></div>  
+    </div>
+ 
+
+
+    <div class = "spacer">
+    <br>
+    </div>
+      <div id="quest_filter_tooltip2">
+
+    Filter by the school questionaire:
+<label class="switch">
+
+      <input id="question_toggleb" type="checkbox" class="switch-input" checked>
+
+      <span class="switch-label" data-on="On" data-off="Off"></span>
+
+      <span class="switch-handle"></span>
+
+    </label>
+</div>
+<br>
+<div id = "school-container2" class="toggle-container">
+
+    Is your school’s capacity to provide instruction hindered by any of the following issues? 
+    <div class = "styled-select" id = "school-select">
+  <select id = "schoolb" class = "school">
+  </select>    
+    </div>
+    Select answers to allow through filter: 
+    <div id="school_domain_check_boxesb">
+</div>
+
+</div>
+
+
+
+
+</div>
+
+  
+    <div class="select_two">
+    <h2 id="subject_tooltip2"><img src="svg/education36.svg" height=28 width=28>
+  
+Scoring Subject:
+</h2>
+    <div class = "styled-select" id = "subject-selectb">
+<select id = "subjectb">
+    <option value="ave">Average of maths, reading and science scores</option>
+<option value="maths">Maths scores</option>
+<option value="read">Reading scores</option> 
+<option value="scie">Science scores</option>
+</select>    
+</div>
+</div>
+</div>
+
+
+   <div class = "spacer"></div>
+
+
+</div>
+
+
+
+
+<!-- second chart ________________________-->
+
+   <div class = "spacer"></div>
+
     
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis)
-    .append("text")
-      .attr("class", "x_label")
-      .attr("x", width)
-      .attr("y", -6)
-      .style("text-anchor", "end")
-      .text(xlabtxt);
 
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("class", "y_label")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text(ylabtxt)
+    <div id = "links">
+    LINKS <br>
+    Pisa 2012 Results: <a href="http://www.oecd.org/pisa/keyfindings/pisa-2012-results.htm">http://www.oecd.org/pisa/keyfindings/pisa-2012-results.htm</a><br>
+    Student Questionaire: <a href="https://nces.ed.gov/surveys/pisa/pdf/MS12_StQ_FormB_ENG_USA_final.pdf">https://nces.ed.gov/surveys/pisa/pdf/MS12_StQ_FormB_ENG_USA_final.pdf</a>
+    <br>
+    School Questionaire:  <a href="https://nces.ed.gov/surveys/pisa/pdf/MS12_ScQ_USA_final.pdf">https://nces.ed.gov/surveys/pisa/pdf/MS12_ScQ_USA_final.pdf
+</a>
+    <br>
+    Icons: <a href="http://www.freepik.com">designed by freepik</a>
 
-
-  svg.selectAll(".dot")
-      .data(ukstudents)
-    .enter().append("circle")
-      .attr("class", "dot")
-      .attr("r", 1.5)
-	.attr("cx", function(d) { return x(getSchoolGrade(d.SCHOOLID)); })
-    	.attr("cy", function(d) {
-	    y_value = 0;
-	    if (student_var == "maths") {
-		y_value = y(d.maths);
-	    }
-	    else if (student_var == "read") {
-		y_value = y(d.read);
-	    }
-	    else {
-		y_value = y(d.scie);
-	    }
-	    return y_value
-	    	})
-	.attr('fill-opacity', 0.5)
-	.attr('stroke-opacity', 0.5)
-      		.style("stroke", function(d) {
-		
-            return color(getColor(d))})
-      	.style("fill", function(d) {
-          return getColor(d)})
-      .style("display", function(d) {
-         return getColor(d) == "" ? "none" : null; });
+</div> 
+    <div id = "comparecharts">
+      <button id = "toggleSecondChart" onclick="toggleSecondChart()">
+	Add a chart for comparison.
+	</button>
+      </div>
 
 
 
-
+    <script src="js/d3.v3.min.js"></script>
     
-    
-	
-
-
-    var legend = svg.selectAll(".legend")
-      .data([color.domain()[4],color.domain()[3],color.domain()[0],color.domain()[2]])
-    .enter().append("g")
-      .attr("class", "legend")
-      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; })
-
-    
-
-  legend.append("rect")
-      .attr("x", width - 18)
-      .attr("width", 18)
-      .attr("height", 18)
-      .style("fill", color);
-
-  legend.append("text")
-      .attr("x", width - 24)
-      .attr("y", 9)
-      .attr("dy", ".35em")
-      .style("text-anchor", "end")
-		.text(function(d) { return d; });
+    <script src="js/index6.js"></script>
 
 
 
-		
-		};
-function updateChart() {
-    svg.selectAll(".dot").transition()
-        .duration(3000)
-        .attr("cx", function(d) { return x(getSchoolGrade(d.SCHOOLID)); })
-    	.attr("cy", function(d) {
-	    y_value = 0;
-	    if (student_var == "maths") {
-		y_value = y(d.maths);
-	    }
-	    else if (student_var == "read") {
-		y_value = y(d.read);
-	    }
-	    else {
-		y_value = y(d.scie);
-	    }
-	    return y_value
-		})
-		.attr('fill-opacity', 0.5)
-	.attr('stroke-opacity', 0.5)
-      		.style("stroke", function(d) {
-		
-            return color(getColor(d))})
-      	.style("fill", function(d) {
-          return getColor(d)})
-      .style("display", function(d) {
-         return getColor(d) == "" ? "none" : null; });
-
-    var xlab = document.getElementById("school");
-    xlabtxt = xlab.selectedIndex
-    xlabtxt = xlab.options[xlabtxt].text
-    svg.selectAll(".x_label")
-    	.text(xlabtxt)
-
-    var ylab = document.getElementById("school");
-    ylabtxt = ylab.selectedIndex
-    ylabtxt = ylab.options[ylabtxt].text
-    svg.selectAll(".y_label")
-    	.text(ylabtxt)
-
-}
-		
-</script>
+    </body>
+    </html>
