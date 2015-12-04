@@ -115,91 +115,79 @@ me - I was thinking I may add mouseover's with the numbers (so you hover over a 
 > definitely increase text size
 
 
+### Ray P. Via Email
+
+>    What do you notice in the visualization?
+
+> The 'across the board' commonality and consistency of the percentile breakdown.
+
+>    What questions do you have about the data?
+
+> None, it's clear and easy to interpret, though each should, initially presented with its own comments, and then the percentile charts collected to demonstrate the commonality.
+
+>    What relationships do you notice?
+
+> Fig 1, to 3, 4, 5, and 6. Fig 2, in my opinion did not need to be expressed as a chart (but that's just me :)
+
+>    What do you think is the main takeaway from this visualization?
+
+> Clarity.
+
+>     Is there something you don’t understand in the graphic?
+
+> No.
 
 
-Ray P. ***********************************************
-Via Email
+### Steven O. Via Email
 
-    What do you notice in the visualization?
-
-The 'across the board' commonality and consistency of the percentile breakdown.
-
-    What questions do you have about the data?
-
-None, it's clear and easy to interpret, though each should, initially presented with its own comments, and then the percentile charts collected to demonstrate the commonality.
-
-    What relationships do you notice?
-
-Fig 1, to 3, 4, 5, and 6. Fig 2, in my opinion did not need to be expressed as a chart (but that's just me :)
-
-    What do you think is the main takeaway from this visualization?
-
-Clarity.
-
-    Is there something you don’t understand in the graphic?
-
-No.
+> First off I notice of course that the poorer you do in school the more you agree with it being a waste of time and I can understand them feeling that way.
+> 2nd I cant think of one but maybe later after some thought.
+> 3rd- I think i answered that above.
+> 4th- main takeaway is again students who dont do well in school just dont see the value in it.
+> 5th- I dont understand how they differ. I mean on the side and the horizontal it seems like the same title
+> but you have different numbers and different size graphs. Need to speak in person.
 
 
-Steven O. ****************************************************
-Via Email. 
+### Robert S. Via Email.
 
-First off I notice of course that the poorer you do in school the more you agree with it being a waste of time and I can 
-understand them feeling that way.
-2nd I cant think of one but maybe later after some thought.
-3rd- I think i answered that above.
-4th- main takeaway is again students who dont do well in school just dont see the value in it.
-5th- I dont understand how they differ. I mean on the side and the horizontal it seems like the same title
-but you have different numbers and different size graphs. Need to speak in person.
+> I don't understand the percentiles.
 
 
-Robert S. *****************************************************
-Via Email.
+### Malcolm V. - Spoken, face to face.
 
-I don't understand the percentiles.
-
+> It's very clean. The first two graphs were quite clear but I wasn't sure what the others were supposed to represent. There's certainly a lot of options but I was confused as to what was changing. If I changed one of the parameters, all the graphs changed and I wasn't quite sure what was happening.
 
 
-Malcolm V. ****************************************************
-Spoken, face to face.
-
-It's very clean. The first two graphs were quite clear but I wasn't sure what the others were supposed to represent. There's certainly a lot of options but I was confused as to what was changing. If I changed one of the parameters, all the graphs changed and I wasn't quite sure what was happening.
+## Version 5:
 
 
-Version 5:
+### Ray P Via Email
 
-
-Ray P. ***********************************************
-Via Email
-
-
-    What do you notice in the visualization? It's very clear and easy to determine the responses.
-    What questions do you have about the data? That the positive responses are prevalent.
-    What relationships do you notice? None.
-    What do you think is the main takeaway from this visualization? Its ease of interpretation.
-    Is there something you don’t understand in the graphic? Box two. When I clicked the filters in/out, there was no change.
+>    What do you notice in the visualization? It's very clear and easy to determine the responses.
+>    What questions do you have about the data? That the positive responses are prevalent.
+>    What relationships do you notice? None.
+>    What do you think is the main takeaway from this visualization? Its ease of interpretation.
+>    Is there something you don’t understand in the graphic? Box two. When I clicked the filters in/out, there was no change.
 
 
 
-wilfried_29181078645 *********************************
-Via Udacity Forums
+### wilfried_29181078645
 
+> Thanks for sharing this visualization. You found an interesting way to explore the PISA study and its various aspects.
 
-Thanks for sharing this visualization. You found an interesting way to explore the PISA study and its various aspects.
+> There are a few thinks I would like to mention:
 
-There are a few thinks I would like to mention:
+> It took me some time to understand the bar representation. It is a mixture of bar (vertical) and stacked bar (horizontal). I would suggest changing it to something else but I don't have a clever idea what to chose instead.
 
-It took me some time to understand the bar representation. It is a mixture of bar (vertical) and stacked bar (horizontal). I would suggest changing it to something else but I don't have a clever idea what to chose instead.
+> I think, the colors of the bars don't serve their meaning very well. I would have understood green for agree and red for disagree. I would recommend a different color palette.
 
-I think, the colors of the bars don't serve their meaning very well. I would have understood green for agree and red for disagree. I would recommend a different color palette.
+> It also took me some time to understand the filters on the right. This is especially true for the school filter. The lower part of filter is based on the response of a senior administrator, correct?
 
-It also took me some time to understand the filters on the right. This is especially true for the school filter. The lower part of filter is based on the response of a senior administrator, correct?
+> I found some visualization problems:
+> - y axis is not changing with scoring selection
+> - the right bars could overlap the legend if only schools with high scores are selected
 
-I found some visualization problems:
-- y axis is not changing with scoring selection
-- the right bars could overlap the legend if only schools with high scores are selected
-
-Great start. I'm looking forward to seeing your next version of this.
+> Great start. I'm looking forward to seeing your next version of this.
 
 
 
