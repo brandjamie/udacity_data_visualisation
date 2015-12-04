@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- issue with memory management - perhaps keeping variables in memory after refresh? -->
+<meta http-equiv="Cache-control" content="no-cache">
+
+    <link rel="stylesheet" href="css/jquery.slider.min.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="css/index6.css" type="text/css" charset="utf-8">
+
+    
+    <script type="text/javascript" src="js/jquery-1.7.1.js"></script>
+
+
+    <script type="text/javascript" src="js/jquery.slider.min.js"></script> 
+
+
+
+    <script>
+
+
+jQuery(document).ready(function(){
+
+    jQuery("#Slider1").slider({ from: 220, to: 720, step: 10, smooth: true, round: 0, skin: "round",  callback: function( value ){
+	slider_one_mouse_up( value );}  });
+  
+   jQuery("#Slider2").slider({ from: 220, to: 720, step: 10, smooth: true, round: 0, skin: "round",  callback: function( value ){
+	slider_two_mouse_up( value );}  });
+   });
+
+
+</script>
+
+
+</head>
+
+    <body>
+    <span id = "title">
+    <h1>PISA 2012 - The relationship of student attitudes to results</h1>
+    </span>
+    <div id = "copy">
+<p>
+8202 students in 507 schools accross the uk took part in the 2012 pisa
+Survey. The students answered a questionaire investigating, among
+other things, their attitude towards school and were graded on their
+abilities in maths, science and reading. An additional questionaire
+was filled out by the senior administrator in each school. 
+</p>
+<p>
+The chart shows how students who showed positive attitudes towards school in the PISA questionaire tended to have higher scores in the PISA tests for maths, science and reading. The relationship remained the same accross different groups of schools.
+
+</p>
+<p>
+The responses to different attitude statements can be explored by changing the 'Students Attitudes' drop down box. The schools included in the charts can by filtered, either by the schools average score or by the responses of the schools senior administrator to questions in the school questionaire. The scoring subject(s) can be changed and a second chart can be added to the visualisation to make comparisons easier. 
+  </p>
+    </div>
+    <div id="first_chart"> 
+
+
+
+
+
+    <div class = "spacer"></div>
+
+    <div id = "chartone" class = "chart"> 
+    </div>
+<div class = "controls">
+  <div class = "selection_one">
+    <h2 id="student_attitudes1"><img src="svg/student53.svg" height=28 width=28>
+    Student Attitudes</h2>
+    From the student questionaire:
+
+    <br>
+    <br>
+    To what extend to you agree with the following statement?
+
+
+    <div class = "styled-select" id = "attitude-select">
+<select id = "attitude" class = "attitude">
+</select>    
+    </div>
+</div> 
+
+
+    <div class="select_three">
+      
+    <h2 id="school_filter1"><img src="svg/school50.svg" height=28 width=28>
+    Filter Schools</h2>
+
+    <div class="layout-slider" style="display: inline-block">
+      <div id="school_score_filter1">
+    Filter by average score of school:
+<label class="switch">
+
+      <input id="score_toggle" type="checkbox" class="switch-input" unchecked>
+
+      <span class="switch-label" data-on="On" data-off="Off"></span>
+
+      <span class="switch-handle"></span>
+
+    </label>
+</div>
+  <br>
+   <div class = "spacer"></div>
+
+
+   
+   <div id="sliderdiv1" class="toggle-container" style="display: block; width: 270px; padding: 0 5px;"><input id="Slider1" type="slider" name="price" value="300.5;800" /></div>  
+    </div>
+ 
+
+
+    <div class = "spacer">
+    <br>
+    </div>
+    <div id="quest_filter_tooltip1">
+    Filter by the school questionaire:
+<label class="switch">
+
+      <input id="question_toggle" type="checkbox" class="switch-input" checked>
+
+      <span class="switch-label" data-on="On" data-off="Off"></span>
+
+      <span class="switch-handle"></span>
+
+    </label>
+</div>
+<br>
+<div id="school-container1" class="toggle-container">
+    Is your school’s capacity to provide instruction hindered by any of the following issues? 
+
+    <div class = "styled-select" id = "school-select">
+  <select id = "school" class="school">
+  </select>    
+    </div>
+    Select answers to allow through filter: 
+    <div id="school_domain_check_boxes">
+</div>
+
+
+</div>
+
+
+
+</div>
+
+  
+    <div class="select_two">
+    <h2 id="subject_tooltip1"><img src="svg/education36.svg" height=28 width=28>
+  
+Scoring Subject:
+</h2>
+    <div class = "styled-select" id = "subject-select">
+<select id = "subject">
+    <option value="ave">Average of maths, reading and science scores</option>
+<option value="maths">Maths scores</option>
+<option value="read">Reading scores</option> 
+<option value="scie">Science scores</option>
+</select>    
+</div>
+</div>
+</div>
+
+
+   <div class = "spacer"></div>
+
+
+    </div>
+
+    <div class = "spacer"><br></div>
+<!-- second chart ________________________-->
+
+    <div id="second_chart"> 
+
+
+
+
+
+    <div class = "spacer"></div>
+
+    <div id = "charttwo" class = "chart"> 
+    </div>
+<div class = "controls">
+    <div class = "selection_one">
+    <h2 id="student_attitudes2"><img src="svg/student53.svg" height=28 width=28>
+    Student Attitudes</h2>
+    From the student questionaire:
+
+    <br>
+    <br>
+    To what extend to you agree with the following statement?
+
+
+    <div class = "styled-select" id = "attitude-select">
+<select id = "attitudeb" class = "attitude">
+</select>    
+    </div>
+</div> 
+
+
+    <div class="select_three">
+      
+    <h2 id = "school_filter2"><img src="svg/school50.svg" height=28 width=28>
+    Filter Schools</h2>
+
+    <div class="layout-slider" style="display: inline-block">
+           <div id="school_score_filter2">
+    Filter by average score of school:
+<label class="switch">
+
+      <input id="score_toggleb" type="checkbox" class="switch-input" unchecked>
+
+      <span class="switch-label" data-on="On" data-off="Off"></span>
+
+      <span class="switch-handle"></span>
+
+    </label>
+</div>
+   <br>
+   <div class = "spacer"></div>
+
+
+   
+   <div id="sliderdiv2" class="toggle-container" style="display: block; width: 270px; padding: 0 5px;"><input id="Slider2" type="slider" name="price" value="300.5;800" /></div>  
+    </div>
+ 
+
+
+    <div class = "spacer">
+    <br>
+    </div>
+      <div id="quest_filter_tooltip2">
+
+    Filter by the school questionaire:
+<label class="switch">
+
+      <input id="question_toggleb" type="checkbox" class="switch-input" checked>
+
+      <span class="switch-label" data-on="On" data-off="Off"></span>
+
+      <span class="switch-handle"></span>
+
+    </label>
+</div>
+<br>
+<div id = "school-container2" class="toggle-container">
+
+    Is your school’s capacity to provide instruction hindered by any of the following issues? 
+    <div class = "styled-select" id = "school-select">
+  <select id = "schoolb" class = "school">
+  </select>    
+    </div>
+    Select answers to allow through filter: 
+    <div id="school_domain_check_boxesb">
+</div>
+
+</div>
+
+
+
+
+</div>
+
+  
+    <div class="select_two">
+    <h2 id="subject_tooltip2"><img src="svg/education36.svg" height=28 width=28>
+  
+Scoring Subject:
+</h2>
+    <div class = "styled-select" id = "subject-selectb">
+<select id = "subjectb">
+    <option value="ave">Average of maths, reading and science scores</option>
+<option value="maths">Maths scores</option>
+<option value="read">Reading scores</option> 
+<option value="scie">Science scores</option>
+</select>    
+</div>
+</div>
+</div>
+
+
+   <div class = "spacer"></div>
+
+
+</div>
+
+
+
+
+<!-- second chart ________________________-->
+
+   <div class = "spacer"></div>
+
+    
+
+    <div id = "links">
+    LINKS <br>
+    Pisa 2012 Results: <a href="http://www.oecd.org/pisa/keyfindings/pisa-2012-results.htm">http://www.oecd.org/pisa/keyfindings/pisa-2012-results.htm</a><br>
+    Student Questionaire: <a href="https://nces.ed.gov/surveys/pisa/pdf/MS12_StQ_FormB_ENG_USA_final.pdf">https://nces.ed.gov/surveys/pisa/pdf/MS12_StQ_FormB_ENG_USA_final.pdf</a>
+    <br>
+    School Questionaire:  <a href="https://nces.ed.gov/surveys/pisa/pdf/MS12_ScQ_USA_final.pdf">https://nces.ed.gov/surveys/pisa/pdf/MS12_ScQ_USA_final.pdf
+</a>
+    <br>
+    Icons: <a href="http://www.freepik.com">designed by freepik</a>
+
+</div> 
+    <div id = "comparecharts">
+      <button id = "toggleSecondChart" onclick="toggleSecondChart()">
+	Add a chart for comparison.
+	</button>
+      </div>
+
+
+
+    <script src="js/d3.v3.min.js"></script>
+    
+    <script src="js/index6.js"></script>
+
+
+
+    </body>
+    </html>
