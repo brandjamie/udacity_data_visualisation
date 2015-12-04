@@ -160,18 +160,7 @@ me - I was thinking I may add mouseover's with the numbers (so you hover over a 
 
 ## Version 5:
 
-
-### Ray P Via Email
-
->    What do you notice in the visualization? It's very clear and easy to determine the responses.
->    What questions do you have about the data? That the positive responses are prevalent.
->    What relationships do you notice? None.
->    What do you think is the main takeaway from this visualization? Its ease of interpretation.
->    Is there something you don’t understand in the graphic? Box two. When I clicked the filters in/out, there was no change.
-
-
-
-### wilfried_29181078645
+### wilfried_29181078645 Via Udacity forums
 
 > Thanks for sharing this visualization. You found an interesting way to explore the PISA study and its various aspects.
 
@@ -188,6 +177,16 @@ me - I was thinking I may add mouseover's with the numbers (so you hover over a 
 > - the right bars could overlap the legend if only schools with high scores are selected
 
 > Great start. I'm looking forward to seeing your next version of this.
+
+### Ray P Via Email
+
+>    What do you notice in the visualization? It's very clear and easy to determine the responses.
+>    What questions do you have about the data? That the positive responses are prevalent.
+>    What relationships do you notice? None.
+>    What do you think is the main takeaway from this visualization? Its ease of interpretation.
+>    Is there something you don’t understand in the graphic? Box two. When I clicked the filters in/out, there was no change.
+
+
 
 
 

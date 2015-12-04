@@ -1,0 +1,121 @@
+
+Original data from these sources:
+
+For student questionaire:
+
+pisa2012.csv :
+https://www.google.com/url?q=https://s3.amazonaws.com/udacity-hosted-downloads/ud507/pisa2012.csv.zip&sa=D&usg=AFQjCNFa-hVIAXKWNqUUDSPnuEhWgLTaVQ
+
+pisadict.csv :
+https://www.google.com/url?q=https://s3.amazonaws.com/udacity-hosted-downloads/ud507/pisadict2012.csv&sa=D&usg=AFQjCNFRZg4vbE-i76NEeDD67KYiPP587A
+
+
+For school questionaire: 
+
+Data was downloaded from :
+https://pisa2012.acer.edu.au/downloads/INT_SCQ12_DEC03.zip
+
+SPS file was used with GNU octave to convert data to a csv file :
+https://pisa2012.acer.edu.au/downloads/INT_SCQ12_SPSS.sps
+
+
+Both csv files were imported in to mysql for easier exploration.
+
+Further csv files were made for the each chart. 
+
+------------------------------------------------------------------------
+index1.html used the file 'uk_students.csv' created with 'querysql.py'
+and the file 'ukschools.csv' created with 'querysqlthree.py'
+
+*** uk_students.csv one entry for each student.
+
+headings: 
+
+SCHOOLID,ST04Q01,ST86Q01,ST86Q02,ST86Q03,ST86Q04,ST86Q05,ST87Q01,ST87Q02,ST87Q03,ST87Q04,ST87Q05,ST87Q06,ST87Q07,ST87Q08,ST87Q09,ST88Q01,ST88Q02,ST88Q03,ST88Q04,ST89Q02,ST89Q03,ST89Q04,ST89Q05,ST91Q01,ST91Q02,ST91Q03,ST91Q04,ST91Q05,ST91Q06,ST93Q01,ST93Q03,ST93Q04,ST93Q06,ST93Q07
+
+ - See pisadict2012.csv
+
+maths: students maths score
+read: students readings score
+scie: students science score
+
+*** ukschools.csv  - one entry for each school
+
+SCHOOLID,ST04Q01,ST86Q01,ST86Q02,ST86Q03,ST86Q04,ST86Q05,ST87Q01,ST87Q02,ST87Q03,ST87Q04,ST87Q05,ST87Q06,ST87Q07,ST87Q08,ST87Q09,ST88Q01,ST88Q02,ST88Q03,ST88Q04,ST89Q02,ST89Q03,ST89Q04,ST89Q05,ST91Q01,ST91Q02,ST91Q03,ST91Q04,ST91Q05,ST91Q06,ST93Q01,ST93Q03,ST93Q04,ST93Q06,ST93Q07
+
+ - See schooldict.txt
+
+maths: school maths score
+read: school readings score
+scie: school science score
+
+------------------------------------------------------------------------
+index2.html used the file 'ukschoolstwo.csv' created with 'querysqlfour.py'.
+
+*** ukschoolstwo.csv - four entries for each school (one for each of the students responses)
+
+SCHOOLID,SCHSIZE,RATCMP15,PROPQUAL,PROPCERT,SMRATIO,RESPCUR,SC25Q05,SC34Q15,SC27Q02,SC16Q05,SC39Q07,
+
+ - See schooldict.txt
+
+
+
+maths: school maths score
+read: school readings score
+scie: school science score
+
+ST88Q01math: average score in maths for students answering this question (ST88Q01) with this student response (option)
+ST88Q01read : average score in reading for students answering this question (ST88Q01) with this student response (option)
+ST88Q01scie : average score in science for this students answering question (ST88Q01) with this student response (option)
+ST88Q02math : see ST88Q01
+ST88Q02read : see ST88Q01
+ST88Q02scie : see ST88Q01
+ST88Q03math : see ST88Q01
+ST88Q03read : see ST88Q01
+ST88Q03scie : see ST88Q01
+ST88Q04math : see ST88Q01
+ST88Q04read : see ST88Q01
+ST88Q04scie : see ST88Q01
+ST89Q02math : see ST88Q01
+ST89Q02read : see ST88Q01
+ST89Q02scie : see ST88Q01
+ST89Q03math : see ST88Q01
+ST89Q03read : see ST88Q01
+ST89Q03scie : see ST88Q01
+ST89Q04math : see ST88Q01
+ST89Q04read : see ST88Q01
+ST89Q04scie : see ST88Q01
+ST89Q05math : see ST88Q01
+ST89Q05read : see ST88Q01
+ST89Q05scie : see ST88Q01
+option : the student response (agree / strongly agree etc)
+
+
+------------------------------------------------------------------------
+index4.html, index5.html and index6.html used the file 'uk_studentsThree.csv' created with 'querysqlseven.py'.
+
+*** uk_studentsThree.csv - one entry for each student
+
+
+SCHOOLID,W_FSTUWT,ST86Q01,ST86Q02,ST86Q03,ST86Q04,ST86Q05,ST87Q01,ST87Q02,ST87Q03,ST87Q04,ST87Q05,ST87Q06,ST87Q07,ST87Q08,ST87Q09,ST88Q01,ST88Q02,ST88Q03,ST88Q04,ST89Q02,ST89Q03,ST89Q04,ST89Q05,ST91Q01,ST91Q02,ST91Q03,ST91Q04,ST91Q05,ST91Q06,
+
+- See pisadict2012.csv
+
+maths: students maths score
+read: students readings score
+scie: students science score
+
+
+
+SCHOOLID,SC14Q01,SC14Q02,SC14Q03,SC14Q04,SC14Q05,SC14Q06,SC14Q07,SC14Q08,SC14Q09,SC14Q10,
+
+ - See schooldict.txt
+
+
+
+schoolmath: school maths score
+schoolread: school readings score
+schoolscie: school science score
+
+
+
