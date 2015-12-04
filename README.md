@@ -53,6 +53,7 @@ A text resizing function was added to resize the chart's title according to it's
 
 ### Version 5 - index6.html or index.html
 https://brandjamie.github.io/udacity_data_visualisation/index6.html
+
 https://brandjamie.github.io/udacity_data_visualisation/index.html
 
 
