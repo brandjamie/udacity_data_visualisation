@@ -9,6 +9,8 @@ was filled out by the senior administrator in each school. This visualisation ex
 ## Design
 
 ### Version 1 - index1.html
+https://brandjamie.github.io/udacity_data_visualisation/index1.html
+
 My first attempt used a scatterplot to show each students score (on a chosen subject), compared to their schools average score.
 
 The colour of each point was assigned to their answer to the chosen attitude question (e.g. How much do you agree with the following statement? - School has been a waste of time.)
@@ -20,6 +22,8 @@ In practice it was difficult to see any patterns in the data due to some answers
 Note: The 'y' axis is incorrectly labeled on this version and should be labled after the student score as selected in the top left.
 
 ### Version 2 - index2.html
+https://brandjamie.github.io/udacity_data_visualisation/index2.html
+
 
 Similarly to the previous plot, this showed the average score for each answer to the attitudes questions, grouped by school. Schools were placed on the y axis according to the average score of the school. Schools could also be placed according to other variables from the school questionaire although this was not very effective. 
 
@@ -27,6 +31,8 @@ While this showed the relationships between scores and attitudes a little better
 
 
 ### Version 3 - index4.html (index3 was a dead end!)
+https://brandjamie.github.io/udacity_data_visualisation/index4.html
+
 
 In an effort to make the data clearer to the viewer, I opted for a collection of charts to be compared to one another. Each chart was a variation on the bar chart, with the width of each bar representing the percentage of students who gave each answer, and the height representing their average score.
 
@@ -35,6 +41,7 @@ A second chart showed the break down of schools, either according to the their a
 Four smaller charts showed the data from the first chart broken into four groups by school, according to the catagorisation method chosen in the second chart.
 
 ### Version 4 - index5.html
+https://brandjamie.github.io/udacity_data_visualisation/index5.html
 
 Having multiple charts seemed to confuse people, particularly using the percentile groupings. This version took the same basic idea for a chart but instead had only one chart with the option to filter the number of schools included in the data according to the schools answer to certain question and/or the average score of the school.
 
@@ -44,7 +51,10 @@ An option was given to add a second copy of the graph if the user wanted to make
 A text resizing function was added to resize the chart's title according to it's length. 
 
 
-### Version 5 - index6.html
+### Version 5 - index6.html or index.html
+https://brandjamie.github.io/udacity_data_visualisation/index6.html
+https://brandjamie.github.io/udacity_data_visualisation/index.html
+
 
 A new colour pallete was suggested in the feedback. The suggestion was to use green and red for agree disagree. While this has positive and negative connotations, a number of the statements are worded negatively so that 'disagree' acctually shows a positive attitude towards school. I also wished to use a colorblind friendly pallete so I selected a diverging pallete from colorbrewer2.org
 
