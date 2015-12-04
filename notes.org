@@ -207,6 +207,11 @@ he he
 sounds cute!
 It's showing through facebook?
 Funny how that kinda thing must get annoying when it's all teh time - to me it just sounds amazingly cute!
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> master
 * Fourth attempt
 
 
@@ -223,4 +228,26 @@ http://zeroviscosity.com/d3-js-step-by-step/step-5-adding-tooltips
 ** text resize
 http://stackoverflow.com/questions/14569415/read-width-of-d3-text-element
 
+
+
+
+
+* Fith attempt
+
+** Todo
+color pallet DONE
+text resize for lower chart DONE
+y scale not changing DONE
+legend needs to be adjusted DONE
+tooltips added for filters DONE
+default filters not 100% of students.  DONE
+second chart should default to same results as first chart (on unhiding) DONE
+
+copy added to show explicit relationship DONE
+
+
+
+check code DONE 
+change markdown in README file
+add file explaining data DONE
 
